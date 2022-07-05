@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StoreApp.AppShell"
+             xmlns:views="clr-namespace:StoreApp.Views" 
+             Style="{StaticResource BaseStyle}">
+
+    <TabBar>
+        <ShellContent Route="accueil" Title="Accueil" 
+                      Icon="infoIcon.ico" 
+                      ContentTemplate="{DataTemplate views:AccueilPage}"/>
+        
+        <Tab Route="magasin" Title="Magasiner" Icon="storeIcon.ico">
+            <ShellContent Route="phones" Title="Telephones" 
+                          ContentTemplate="{DataTemplate views:PhonesPage}"/>
+            
+            <ShellContent Route="tablets" Title="Tablettes" 
+                          ContentTemplate="{DataTemplate views:TabletsPage}"/>
+            
+            <ShellContent Route="watches" Title="Montres intelligentes" 
+                          ContentTemplate="{DataTemplate views:WatchesPage}"/>
+        </Tab>
+        
+        <ShellContent Route="panier" Title="Voir Panier" 
+                      Icon="cartIcon.ico" 
+                      ContentTemplate="{DataTemplate views:PanierPage}"/>
+    </TabBar>
+
+</Shell>

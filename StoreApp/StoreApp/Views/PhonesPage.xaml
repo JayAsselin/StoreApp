@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StoreApp.Views.PhonesPage"
+             Title="Liste des Telephones"
+             xmlns:model="clr-namespace:StoreApp.Models"
+             xmlns:vm="clr-namespace:StoreApp.ViewModels">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Vider Panier"/>
+    </ContentPage.ToolbarItems>
+    <CollectionView x:Name="PhonesListView" ItemsSource="{Binding Phones}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <StackLayout Padding="10" x:DataType="model:SmartDevice">
+                    <Image Source="https://media.wired.com/photos/62586aa25267e2760229c7f6/master/w_1920,c_limit/Samsung-Galaxy-A53-5G-Top-Gear.jpg"
+                           Aspect="AspectFit"/>
+                    <Label Text="{Binding Modele}"/>
+                    <Label Text="{Binding Fabriquant}"/>
+                    <Label Text="{Binding Type}"/>
+                    <Label Text="{Binding Prix}"/>
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>
