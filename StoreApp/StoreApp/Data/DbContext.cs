@@ -33,7 +33,6 @@ namespace StoreApp.Data
             try
             {
                 SmartDevice sd;
-                // inserer l'objet a la table
                 sd = new SmartDevice()
                 {
                     Modele = "Galaxy S10",
@@ -456,10 +455,10 @@ namespace StoreApp.Data
 
         }
 
-        public Task<List<SmartDevice>> GetAllAsync()
+        public Task<List<Panier>> GetAllAsync()
         {
             // Shows all database entries into a list
-            return database.Table<SmartDevice>().ToListAsync();
+            return database.Table<Panier>().ToListAsync();
         }
         public Task<List<SmartDevice>> GetByTypeAsync(string type)
         {

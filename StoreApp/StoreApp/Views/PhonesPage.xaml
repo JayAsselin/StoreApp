@@ -12,14 +12,20 @@
     <CollectionView x:Name="PhonesListView" ItemsSource="{Binding Phones}">
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <StackLayout Padding="10" x:DataType="model:SmartDevice">
-                    <Image Source="https://media.wired.com/photos/62586aa25267e2760229c7f6/master/w_1920,c_limit/Samsung-Galaxy-A53-5G-Top-Gear.jpg"
-                           Aspect="AspectFit"/>
+                <Frame>
+                <StackLayout Padding="10" x:DataType="model:SmartDevice" Orientation="Horizontal">
+                    <Image Source="phoneImage.png"
+                           Aspect="AspectFit"
+                           HeightRequest="150"
+                           WidthRequest="150"/>
+                        <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
                     <Label Text="{Binding Modele}"/>
                     <Label Text="{Binding Fabriquant}"/>
                     <Label Text="{Binding Type}"/>
                     <Label Text="{Binding Prix}"/>
-                </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>

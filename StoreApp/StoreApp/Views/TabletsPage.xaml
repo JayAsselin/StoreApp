@@ -11,12 +11,19 @@
     <CollectionView x:Name="TabletsListView" ItemsSource="{Binding Tablets}">
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <StackLayout Padding="10" x:DataType="model:SmartDevice">
-                    <Label Text="{Binding Modele}"/>
-                    <Label Text="{Binding Fabriquant}"/>
-                    <Label Text="{Binding Type}"/>
-                    <Label Text="{Binding Prix}"/>
+                <Frame>
+                <StackLayout Padding="10" x:DataType="model:SmartDevice" Orientation="Horizontal">
+                        <Image Source="tabletImage.png" Aspect="AspectFit" 
+                               HeightRequest="150" WidthRequest="150"/>
+                        <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
+                           <Label Text="{Binding Modele}"/>
+                            <Label Text="{Binding Fabriquant}"/>
+                            <Label Text="{Binding Type}"/>
+                            <Label Text="{Binding Prix, StringFormat='Prix: {0}$'}"/> 
+                        </StackLayout>
+                        
                 </StackLayout>
+                </Frame>
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
