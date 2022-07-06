@@ -3,21 +3,39 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StoreApp.Views.WatchesPage"
              Title="Liste des Montres intelligentes"
-             xmlns:model="clr-namespace:StoreApp.Models">
+             xmlns:model="clr-namespace:StoreApp.Models" xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Vider Panier"/>
     </ContentPage.ToolbarItems>
-    <CollectionView x:Name="WatchesListView" ItemsSource="{Binding Watches}">
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <StackLayout Padding="10" x:DataType="model:SmartDevice">
-                    <Label Text="{Binding Modele}"/>
-                    <Label Text="{Binding Fabriquant}"/>
-                    <Label Text="{Binding Type}"/>
-                    <Label Text="{Binding Prix}"/>
-                </StackLayout>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+    <StackLayout>
+        <xct:BadgeView Text="2" BackgroundColor="Transparent"
+                       TextColor="Red"
+                       FontSize="Subtitle"
+                       HorizontalOptions="EndAndExpand">
+            <Image Source="cartIcon.ico" Aspect="AspectFit"/>
+        </xct:BadgeView>
+        <CollectionView x:Name="WatchesListView" ItemsSource="{Binding Watches}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="15">
+                        <Frame HasShadow="True" BorderColor="LightGray" CornerRadius="5" BackgroundColor="Azure">
+                            <StackLayout x:DataType="model:SmartDevice" 
+                             Orientation="Horizontal"
+                             HorizontalOptions="CenterAndExpand" Padding="-30,0,0,0">
+                                <Image Source="watchImage.png" Aspect="AspectFit"
+                           HeightRequest="125" WidthRequest="125"/>
+                                <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
+                                    <Label Text="{Binding Modele}" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Fabriquant}"/>
+                                    <Label Text="{Binding Type}" FontAttributes="Italic"/>
+                                    <Label Text="{Binding Prix, StringFormat='Prix: {0}$'}" TextColor="Red"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
 </ContentPage>

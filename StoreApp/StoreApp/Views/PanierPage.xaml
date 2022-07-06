@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StoreApp.Views.PanierPage"
+             xmlns:model="clr-namespace:StoreApp.Models"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              Title="Panier">
 
     <ContentPage.ToolbarItems>
@@ -10,9 +12,38 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <xct:BadgeView HorizontalOptions="End" Text="">
+                <Image Source="cartIcon.ico" Aspect="AspectFit"/>
+            </xct:BadgeView>
+            <CollectionView ItemsSource="{Binding Panier}">
+                <CollectionView.EmptyView>
+                    <Label Text="Le panier est vide" FontSize="Large" TextColor="Red" 
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"/>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="15">
+                            <Frame HasShadow="True" BorderColor="LightGray" CornerRadius="5" BackgroundColor="Azure">
+                                <StackLayout Padding="-30,10,0,10" x:DataType="model:SmartDevice" 
+                             Orientation="Horizontal"
+                             HorizontalOptions="CenterAndExpand" Spacing="-5">
+                                    <Image Source="phoneImage.png"
+                           Aspect="AspectFit"
+                           HeightRequest="100"
+                           WidthRequest="150"/>
+                                    <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
+                                        <Label Text="{Binding Modele}" FontAttributes="Bold"/>
+                                        <Label Text="{Binding Fabriquant}"/>
+                                        <Label Text="{Binding Type}" FontAttributes="Italic"/>
+                                        <Label Text="{Binding Prix, StringFormat='Prix: {0}$'}" TextColor="Red"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -1,4 +1,5 @@
-﻿using StoreApp.Models;
+﻿using StoreApp.Data;
+using StoreApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,14 +7,16 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Xamarin.Forms;
 
 namespace StoreApp.ViewModels
 {
     internal class PhonesViewModel : INotifyPropertyChanged
     {
+        private Panier panier { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<SmartDevice> Phones { get; set; }
-
+        public Command<SmartDevice> AddToCart;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             if(PropertyChanged == null)
@@ -47,6 +50,16 @@ namespace StoreApp.ViewModels
         {
             this.Phones = new ObservableCollection<SmartDevice>();
             RefreshList();
+            this.AddToCart = new Command<SmartDevice>(OnTapped);
+        }
+
+        void OnTapped(SmartDevice item)
+        {
+            if(item == null)
+                return ;
+
+            panier.AddProduct(item);
+            panier.CountPanier();
         }
     }
 }

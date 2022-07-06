@@ -1,5 +1,4 @@
 ﻿using StoreApp.Data;
-using StoreApp.Models;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

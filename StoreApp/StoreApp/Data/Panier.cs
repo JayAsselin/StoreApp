@@ -1,42 +1,43 @@
-﻿using System;
+﻿using StoreApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace StoreApp.Models
+namespace StoreApp.Data
 {
     public class Panier
     {
         private List<SmartDevice> content;
         public Panier()
         {
-            this.content = new List<SmartDevice>();
+            content = new List<SmartDevice>();
         }
         public List<SmartDevice> GetContent() { return content; }
         public SmartDevice GetProductById(int id)
         {
-            return this.content.Find(p => p.Id == id);
+            return content.Find(p => p.Id == id);
         }
         public void AddProduct(SmartDevice product)
         {
-            this.content.Add(product);
+            content.Add(product);
         }
         public void RemoveProduct(int id)
         {
-            SmartDevice product = this.content.Find(p => p.Id == id);
-            this.content.Remove(product);
+            SmartDevice product = content.Find(p => p.Id == id);
+            content.Remove(product);
         }
         public void ClearPanier()
         {
-            this.content.Clear();
+            content.Clear();
         }
         public int CountPanier()
         {
-            return this.content.Count;
+            return content.Count;
         }
         public double GetTotal()
         {
-            return this.content.Sum(p => p.Prix);
+            return content.Sum(p => p.Prix);
         }
 
     }

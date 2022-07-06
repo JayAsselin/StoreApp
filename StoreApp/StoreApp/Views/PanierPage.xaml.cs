@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StoreApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,18 @@ namespace StoreApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PanierPage : ContentPage
     {
+        PanierViewModel viewModel;
         public PanierPage()
         {
             InitializeComponent();
+            viewModel = new PanierViewModel();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            BindingContext = null;
+            BindingContext = viewModel;
         }
     }
 }

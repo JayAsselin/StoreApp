@@ -4,29 +4,49 @@
              x:Class="StoreApp.Views.PhonesPage"
              Title="Liste des Telephones"
              xmlns:model="clr-namespace:StoreApp.Models"
-             xmlns:vm="clr-namespace:StoreApp.ViewModels">
+             xmlns:vm="clr-namespace:StoreApp.ViewModels"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Vider Panier"/>
     </ContentPage.ToolbarItems>
-    <CollectionView x:Name="PhonesListView" ItemsSource="{Binding Phones}">
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Frame>
-                <StackLayout Padding="10" x:DataType="model:SmartDevice" Orientation="Horizontal">
-                    <Image Source="phoneImage.png"
+    <StackLayout>
+        <xct:BadgeView x:DataType="vm:PanierViewModel" Text="{Binding Panier.Count}" BackgroundColor="Transparent"
+                       TextColor="Red"
+                       FontSize="Subtitle"
+                       HorizontalOptions="EndAndExpand">
+            <Image Source="cartIcon.ico" Aspect="AspectFit"/>
+        </xct:BadgeView>
+        <CollectionView x:Name="PhonesListView" ItemsSource="{Binding Phones}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="15">
+                        <Frame HasShadow="True" BorderColor="LightGray" CornerRadius="5" BackgroundColor="Azure">
+                            <StackLayout Padding="-30,10,0,10" x:DataType="model:SmartDevice" 
+                             Orientation="Horizontal"
+                             HorizontalOptions="CenterAndExpand" Spacing="-5">
+                                <Image Source="phoneImage.png"
                            Aspect="AspectFit"
-                           HeightRequest="150"
+                           HeightRequest="100"
                            WidthRequest="150"/>
-                        <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
-                    <Label Text="{Binding Modele}"/>
-                    <Label Text="{Binding Fabriquant}"/>
-                    <Label Text="{Binding Type}"/>
-                    <Label Text="{Binding Prix}"/>
-                        </StackLayout>
+                                <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
+                                    <Label Text="{Binding Modele}" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Fabriquant}"/>
+                                    <Label Text="{Binding Type}" FontAttributes="Italic"/>
+                                    <Label Text="{Binding Prix, StringFormat='Prix: {0}$'}" TextColor="Red"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                NumberOfTapsRequired="2"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:PhonesViewModel}}, Path=AddToCart}"		
+                                CommandParameter="{Binding .}">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
                     </StackLayout>
-                </Frame>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
 </ContentPage>
