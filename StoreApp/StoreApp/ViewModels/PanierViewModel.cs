@@ -15,11 +15,14 @@ namespace StoreApp.ViewModels
 {
     internal class PanierViewModel:INotifyPropertyChanged
     {
-        public ObservableCollection<SmartDevice> ListPanier;
+        private ObservableCollection<SmartDevice> _smartDevices;
+        public ObservableCollection<SmartDevice> ListPanier { get => _smartDevices; set { _smartDevices = value; OnPropertyChanged(); } }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public ICommand RemoveFromCart { get; private set; }
-        public ICommand GoToPaiement { get; private set; }
+        public Command RemoveAllItemsFromCart { get; private set; }
+        public Command GoToPaiement { get; private set; }
+        private Command removeFromCart;
+        public Command RemoveFromCart { get => removeFromCart; private set { removeFromCart = value; OnPropertyChanged(); } }
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
@@ -31,10 +34,15 @@ namespace StoreApp.ViewModels
         public PanierViewModel()
         {
             ListPanier = new ObservableCollection<SmartDevice>();
+            this.RemoveAllItemsFromCart = new Command(EmptyCart);
+            this.GoToPaiement = new Command(PaiementPage);
+            this.RemoveFromCart = new Command(RemoveItem);
+            PropertyChanged += (_, __) => RemoveFromCart.ChangeCanExecute();
         }
 
         public void GetPanier()
         {
+            this.ListPanier.Clear();
             var items = App.panier.GetContent();
             foreach (var item in items)
             {
@@ -45,8 +53,6 @@ namespace StoreApp.ViewModels
         public void RefreshList()
         {
             GetPanier();
-            this.RemoveFromCart = new Command(EmptyCart);
-            this.GoToPaiement = new Command(PaiementPage);
         }
         public async void EmptyCart()
         {
@@ -60,12 +66,22 @@ namespace StoreApp.ViewModels
             }
 
         }
+        public async void RemoveItem(object device)
+        {
+            var question = await Shell.Current.DisplayAlert("Attention", "Voulez vous vraiment enlever cette item du panier?", "Oui", "Non");
+            if (question)
+            {
+                App.panier.RemoveProduct((device as SmartDevice).Id);
+                GetPanier();
+                OnPropertyChanged();
+            }
+        }
         public async void PaiementPage()
         {
             await Shell.Current.GoToAsync("PaiementPage");
         }
         private int getCount;
-        public int GetCount { get => getCount; set { _ = App.panier.CountPanier(); OnPropertyChanged(); } }
+        public int GetCount { get => getCount; set { getCount = App.panier.CountPanier(); OnPropertyChanged(); } }
         public double GetPrice => App.panier.GetTotal();
     }
 }

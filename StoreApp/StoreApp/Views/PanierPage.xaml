@@ -9,17 +9,21 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Paiement" Command="{Binding GoToPaiement}"/>
-        <ToolbarItem Text="Vider Panier" Command="{Binding RemoveFromCart}"/>
+        <ToolbarItem Text="Vider Panier" Command="{Binding RemoveAllItemsFromCart}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <xct:BadgeView x:DataType="vm:PanierViewModel" HorizontalOptions="End" Text="{Binding GetCount}">
+            <xct:BadgeView x:DataType="vm:PanierViewModel" HorizontalOptions="End" 
+                           BackgroundColor="Transparent"
+                           TextColor="Red"
+                           FontSize="Subtitle"
+                           Text="{Binding ListPanier.Count}">
                 <Image Source="cartIcon.ico" Aspect="AspectFit"/>
             </xct:BadgeView>
             <Label Text="{Binding GetPrice, StringFormat='Montant du panier: {0}$'}" 
                    FontAttributes="Bold"
                    HorizontalOptions="EndAndExpand"/>
-            <CollectionView ItemsSource="{Binding Panier}">
+            <CollectionView ItemsSource="{Binding ListPanier}">
                 <CollectionView.EmptyView>
                     <Label Text="Le panier est vide" FontSize="Large" TextColor="Red" 
                        VerticalTextAlignment="Center"
@@ -41,6 +45,14 @@
                                         <Label Text="{Binding Fabriquant}"/>
                                         <Label Text="{Binding Type}" FontAttributes="Italic"/>
                                         <Label Text="{Binding Prix, StringFormat='Prix: {0}$'}" TextColor="Red"/>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer 
+                                            NumberOfTapsRequired="2"
+                                            Command="{Binding Source={RelativeSource 
+                                            AncestorType={x:Type vm:PanierViewModel}}, Path=RemoveFromCart}"		
+                                            CommandParameter="{Binding .}">
+                                            </TapGestureRecognizer>
+                                        </StackLayout.GestureRecognizers>
                                     </StackLayout>
                                 </StackLayout>
                             </Frame>

@@ -12,10 +12,10 @@ namespace StoreApp
         public App()
         {
             InitializeComponent();
-
+            panier = new Panier();
             MainPage = new AppShell();
             dbContext = new DbContext("StoreApp.db3");
-            panier = new Panier();
+            
         }
 
         protected override void OnStart()

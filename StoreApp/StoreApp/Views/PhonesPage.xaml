@@ -8,7 +8,7 @@
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Vider Panier" Command="{Binding RemoveFromCart}"/>
+        <ToolbarItem Text="Vider Panier" Command="{Binding RemoveAllItemsFromCart}"/>
     </ContentPage.ToolbarItems>
     <StackLayout>
         <xct:BadgeView x:DataType="vm:PhonesViewModel" Text="{Binding GetCount}" BackgroundColor="Transparent"

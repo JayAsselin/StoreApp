@@ -1,14 +1,25 @@
 ﻿using StoreApp.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace StoreApp.Data
 {
-    public class Panier
+    public class Panier:INotifyPropertyChanged
     {
         private List<SmartDevice> content;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            if (PropertyChanged == null)
+                return;
+            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         public Panier()
         {
             content = new List<SmartDevice>();
