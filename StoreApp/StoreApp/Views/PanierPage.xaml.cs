@@ -1,4 +1,5 @@
-﻿using StoreApp.ViewModels;
+﻿using StoreApp.Models;
+using StoreApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace StoreApp.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            viewModel.RefreshList();
             BindingContext = null;
             BindingContext = viewModel;
         }

@@ -6,13 +6,17 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace StoreApp.ViewModels
 {
-    internal class WatchesViewModel:INotifyPropertyChanged
+    internal class WatchesViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<SmartDevice> Watches { get; set; }
+        public ICommand AddToCart { get; private set; }
+        public ICommand RemoveFromCart { get; private set; }
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
@@ -46,7 +50,29 @@ namespace StoreApp.ViewModels
         public WatchesViewModel()
         {
             this.Watches = new ObservableCollection<SmartDevice>();
-            RefreshList();
+            this.AddToCart = new Command<SmartDevice>(OnTapped);
+            this.RemoveFromCart = new Command(EmptyCart);
         }
+
+        private void OnTapped(SmartDevice item)
+        {
+            if (item == null)
+                return;
+
+            App.panier.AddProduct(item);
+        }
+        public async void EmptyCart() 
+        {
+            if (App.panier.CountPanier() == 0)
+                await Shell.Current.DisplayAlert("Info", "Le panier est vide", "Ok");
+            else
+            {
+                var question = await Shell.Current.DisplayAlert("Attention", "Voulez vous vraiment vider le panier?", "Oui", "Non");
+                if(question)
+                    App.panier.ClearPanier(); 
+            }
+            
+        }
+        public int GetCount => App.panier.CountPanier();
     }
 }

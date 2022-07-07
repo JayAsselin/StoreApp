@@ -8,16 +8,16 @@
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Vider Panier"/>
+        <ToolbarItem Text="Vider Panier" Command="{Binding RemoveFromCart}"/>
     </ContentPage.ToolbarItems>
     <StackLayout>
-        <xct:BadgeView x:DataType="vm:PanierViewModel" Text="{Binding Panier.Count}" BackgroundColor="Transparent"
+        <xct:BadgeView x:DataType="vm:PhonesViewModel" Text="{Binding GetCount}" BackgroundColor="Transparent"
                        TextColor="Red"
                        FontSize="Subtitle"
                        HorizontalOptions="EndAndExpand">
             <Image Source="cartIcon.ico" Aspect="AspectFit"/>
         </xct:BadgeView>
-        <CollectionView x:Name="PhonesListView" ItemsSource="{Binding Phones}">
+        <CollectionView x:Name="PhonesListView" ItemsSource="{Binding Phones}" SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Padding="15">
@@ -34,16 +34,17 @@
                                     <Label Text="{Binding Fabriquant}"/>
                                     <Label Text="{Binding Type}" FontAttributes="Italic"/>
                                     <Label Text="{Binding Prix, StringFormat='Prix: {0}$'}" TextColor="Red"/>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                            NumberOfTapsRequired="2"
+                                            Command="{Binding Source={RelativeSource 
+                                            AncestorType={x:Type vm:PhonesViewModel}}, Path=AddToCart}"		
+                                            CommandParameter="{Binding .}">
+                                        </TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
                                 </StackLayout>
                             </StackLayout>
                         </Frame>
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer 
-                                NumberOfTapsRequired="2"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:PhonesViewModel}}, Path=AddToCart}"		
-                                CommandParameter="{Binding .}">
-                            </TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

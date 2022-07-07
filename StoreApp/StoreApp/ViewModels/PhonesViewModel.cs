@@ -8,15 +8,16 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Xamarin.Forms;
+using System.Windows.Input;
 
 namespace StoreApp.ViewModels
 {
     internal class PhonesViewModel : INotifyPropertyChanged
     {
-        private Panier panier { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<SmartDevice> Phones { get; set; }
-        public Command<SmartDevice> AddToCart;
+        public ICommand AddToCart { get; private set; }
+        public ICommand RemoveFromCart { get; private set; }
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             if(PropertyChanged == null)
@@ -49,17 +50,30 @@ namespace StoreApp.ViewModels
         public PhonesViewModel()
         {
             this.Phones = new ObservableCollection<SmartDevice>();
-            RefreshList();
             this.AddToCart = new Command<SmartDevice>(OnTapped);
+            this.RemoveFromCart = new Command(EmptyCart);
         }
 
-        void OnTapped(SmartDevice item)
+        private void OnTapped(SmartDevice item)
         {
-            if(item == null)
-                return ;
+            if (item == null)
+                return;
 
-            panier.AddProduct(item);
-            panier.CountPanier();
+            App.panier.AddProduct(item);
         }
+        public async void EmptyCart()
+        {
+            if (App.panier.CountPanier() == 0)
+                await Shell.Current.DisplayAlert("Info", "Le panier est vide", "Ok");
+            else
+            {
+                var question = await Shell.Current.DisplayAlert("Attention", "Voulez vous vraiment vider le panier?", "Oui", "Non");
+                if (question)
+                    App.panier.ClearPanier();
+            }
+
+        }
+        private int getCount;
+        public int GetCount { get => getCount; set { _ = App.panier.CountPanier(); OnPropertyChanged(); } }
     }
 }

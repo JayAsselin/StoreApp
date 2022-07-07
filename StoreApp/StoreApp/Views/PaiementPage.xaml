@@ -4,9 +4,23 @@
              x:Class="StoreApp.Views.PaiementPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Page de paiement" FontSize="Title" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+            <Grid RowDefinitions="auto" ColumnDefinitions="auto">
+                <Label Text="Nom:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body"/>
+                <Entry Grid.Column="1" Keyboard="Text"/>
+                <Label Grid.Row="1" Text="Prenom:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body"/>
+                <Entry Grid.Row="1" Grid.Column="1" Keyboard="Text"/>
+                <Label Grid.Row="2" Text="Adresse:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body"/>
+                <Entry Grid.Row="2" Grid.Column="1" Keyboard="Text"/>
+                <Label Grid.Row="3" Text="Telephone:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body"/>
+                <Entry Grid.Row="3" Grid.Column="1" Keyboard="Telephone"/>
+                <Label Grid.Row="4" Text="Courriel:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body"/>
+                <Entry Grid.Row="4" Grid.Column="1" Keyboard="Email"/>
+            </Grid>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0,40" Spacing="50">
+                <Button Text="Annuler" CornerRadius="5" BackgroundColor="LightCoral"/>
+                <Button Text="Payer" CornerRadius="5" BackgroundColor="LightGreen"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

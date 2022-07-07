@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StoreApp.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace StoreApp
         public AppShell()
         {
             InitializeComponent();
+            Routing.RegisterRoute(nameof(PaiementPage), typeof(PaiementPage));
         }
     }
 }

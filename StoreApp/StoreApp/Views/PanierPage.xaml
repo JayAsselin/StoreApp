@@ -4,17 +4,21 @@
              x:Class="StoreApp.Views.PanierPage"
              xmlns:model="clr-namespace:StoreApp.Models"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:vm="clr-namespace:StoreApp.ViewModels"
              Title="Panier">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Paiement"/>
-        <ToolbarItem Text="Vider Panier"/>
+        <ToolbarItem Text="Paiement" Command="{Binding GoToPaiement}"/>
+        <ToolbarItem Text="Vider Panier" Command="{Binding RemoveFromCart}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <xct:BadgeView HorizontalOptions="End" Text="">
+            <xct:BadgeView x:DataType="vm:PanierViewModel" HorizontalOptions="End" Text="{Binding GetCount}">
                 <Image Source="cartIcon.ico" Aspect="AspectFit"/>
             </xct:BadgeView>
+            <Label Text="{Binding GetPrice, StringFormat='Montant du panier: {0}$'}" 
+                   FontAttributes="Bold"
+                   HorizontalOptions="EndAndExpand"/>
             <CollectionView ItemsSource="{Binding Panier}">
                 <CollectionView.EmptyView>
                     <Label Text="Le panier est vide" FontSize="Large" TextColor="Red" 
@@ -28,10 +32,10 @@
                                 <StackLayout Padding="-30,10,0,10" x:DataType="model:SmartDevice" 
                              Orientation="Horizontal"
                              HorizontalOptions="CenterAndExpand" Spacing="-5">
-                                    <Image Source="phoneImage.png"
+                                    <!--<Image Source="phoneImage.png"
                            Aspect="AspectFit"
                            HeightRequest="100"
-                           WidthRequest="150"/>
+                           WidthRequest="150"/>-->
                                     <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
                                         <Label Text="{Binding Modele}" FontAttributes="Bold"/>
                                         <Label Text="{Binding Fabriquant}"/>

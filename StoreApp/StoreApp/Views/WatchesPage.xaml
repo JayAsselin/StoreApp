@@ -3,13 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StoreApp.Views.WatchesPage"
              Title="Liste des Montres intelligentes"
-             xmlns:model="clr-namespace:StoreApp.Models" xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
+             xmlns:model="clr-namespace:StoreApp.Models" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:vm="clr-namespace:StoreApp.ViewModels">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Vider Panier"/>
+        <ToolbarItem Text="Vider Panier" Command="{Binding RemoveFromCart}"/>
     </ContentPage.ToolbarItems>
     <StackLayout>
-        <xct:BadgeView Text="2" BackgroundColor="Transparent"
+        <xct:BadgeView x:DataType="vm:WatchesViewModel" Text="{Binding GetCount}" BackgroundColor="Transparent"
                        TextColor="Red"
                        FontSize="Subtitle"
                        HorizontalOptions="EndAndExpand">
@@ -30,6 +32,14 @@
                                     <Label Text="{Binding Fabriquant}"/>
                                     <Label Text="{Binding Type}" FontAttributes="Italic"/>
                                     <Label Text="{Binding Prix, StringFormat='Prix: {0}$'}" TextColor="Red"/>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                            NumberOfTapsRequired="2"
+                                            Command="{Binding Source={RelativeSource 
+                                            AncestorType={x:Type vm:WatchesViewModel}}, Path=AddToCart}"		
+                                            CommandParameter="{Binding .}">
+                                        </TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
                                 </StackLayout>
                             </StackLayout>
                         </Frame>
