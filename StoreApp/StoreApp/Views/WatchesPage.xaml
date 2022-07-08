@@ -3,21 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StoreApp.Views.WatchesPage"
              Title="Liste des Montres intelligentes"
-             xmlns:model="clr-namespace:StoreApp.Models" 
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:vm="clr-namespace:StoreApp.ViewModels">
+             xmlns:model="clr-namespace:StoreApp.Models"
+             xmlns:vm="clr-namespace:StoreApp.ViewModels" 
+             xmlns:sfbadge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Vider Panier" Command="{Binding RemoveAllItemsFromCart}"/>
     </ContentPage.ToolbarItems>
     <StackLayout>
-        <xct:BadgeView x:DataType="vm:WatchesViewModel" Text="{Binding GetCount}" BackgroundColor="Transparent"
-                       TextColor="Red"
-                       AutoHide="True"
-                       IsAnimated="True"
-                       HorizontalOptions="EndAndExpand">
-            <Image Source="cartIcon.ico" Aspect="AspectFit"/>
-        </xct:BadgeView>
+        <sfbadge:SfBadgeView BadgeText="{Binding GetCount}">
+            <sfbadge:SfBadgeView.Content>
+                <Image Source="cartIcon.ico" Aspect="AspectFit" HorizontalOptions="End"/>
+            </sfbadge:SfBadgeView.Content>
+            <sfbadge:SfBadgeView.BadgeSettings>
+                <sfbadge:BadgeSetting BadgeType="None" BackgroundColor="Red"/>
+            </sfbadge:SfBadgeView.BadgeSettings>
+        </sfbadge:SfBadgeView>
         <CollectionView x:Name="WatchesListView" ItemsSource="{Binding Watches}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>

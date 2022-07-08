@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StoreApp.Views.PanierPage"
              xmlns:model="clr-namespace:StoreApp.Models"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:vm="clr-namespace:StoreApp.ViewModels"
+             xmlns:sfbadge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
              Title="Panier">
 
     <ContentPage.ToolbarItems>
@@ -13,14 +13,14 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <xct:BadgeView x:DataType="vm:PanierViewModel" HorizontalOptions="End" 
-                           BackgroundColor="Transparent"
-                           TextColor="Red"
-                           AutoHide="True"
-                           IsAnimated="True"
-                           Text="{Binding GetCount}">
-                <Image Source="cartIcon.ico" Aspect="AspectFit"/>
-            </xct:BadgeView>
+            <sfbadge:SfBadgeView BadgeText="{Binding GetCount}">
+                <sfbadge:SfBadgeView.Content>
+                    <Image Source="cartIcon.ico" Aspect="AspectFit" HorizontalOptions="End"/>
+                </sfbadge:SfBadgeView.Content>
+                <sfbadge:SfBadgeView.BadgeSettings>
+                    <sfbadge:BadgeSetting BadgeType="None" BackgroundColor="Red"/>
+                </sfbadge:SfBadgeView.BadgeSettings>
+            </sfbadge:SfBadgeView>
             <Label Text="{Binding GetPrice, StringFormat='Montant de la facture: {0}$'}" 
                    FontAttributes="Bold"
                    HorizontalOptions="EndAndExpand"/>

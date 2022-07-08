@@ -44,6 +44,7 @@ namespace StoreApp.ViewModels
             var question = await Shell.Current.DisplayAlert("Attention", "Etes-vous sur de vouloir le paiement?", "Oui", "Non");
             if (question)
                 await Shell.Current.GoToAsync("..");
+                
         }
 
         private bool ValidateFields()

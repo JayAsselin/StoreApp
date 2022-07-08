@@ -11,6 +11,9 @@ namespace StoreApp
         public static DbContext dbContext;
         public App()
         {
+            // License key for syncfusion badge package
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjcyMzg5QDMyMzAyZTMyMmUzMFdPcVFaMjB1dmozejJERXcyRS8ydE5wQ1h5ZXV2S2lyQm1scStGQmR1WlU9");
+
             InitializeComponent();
             panier = new Panier();
             MainPage = new AppShell();
