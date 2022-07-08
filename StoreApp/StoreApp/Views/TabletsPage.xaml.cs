@@ -18,6 +18,7 @@ namespace StoreApp.Views
         {
             InitializeComponent();
             this.viewModel = new TabletsViewModel();
+            BindingContext = viewModel;
         }
 
         protected override void OnAppearing()

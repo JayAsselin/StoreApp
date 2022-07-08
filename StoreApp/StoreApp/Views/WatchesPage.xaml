@@ -25,7 +25,7 @@
                             <StackLayout x:DataType="model:SmartDevice" 
                              Orientation="Horizontal"
                              HorizontalOptions="CenterAndExpand" Padding="-30,0,0,0">
-                                <Image Source="watchImage.png" Aspect="AspectFit"
+                                <Image Source="{Binding Image}" Aspect="AspectFit"
                            HeightRequest="125" WidthRequest="125"/>
                                 <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
                                     <Label Text="{Binding Modele}" FontAttributes="Bold"/>

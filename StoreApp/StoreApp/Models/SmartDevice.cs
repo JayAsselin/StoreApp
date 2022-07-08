@@ -14,6 +14,7 @@ namespace StoreApp.Models
         public string Type { get; set; }
         public string PlateForme { get; set; }
         public double Prix { get; set; }
+        public string Image { get; set; }
 
     }
 }

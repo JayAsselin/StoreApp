@@ -39,7 +39,8 @@ namespace StoreApp.Data
                     Fabriquant = "Samsung",
                     PlateForme = "Android",
                     Type = "Smart Phone",
-                    Prix = 282.47
+                    Prix = 282.47,
+                    Image = "phoneImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -48,7 +49,8 @@ namespace StoreApp.Data
                     Fabriquant = "Samsung",
                     PlateForme = "Android",
                     Type = "Smart Phone",
-                    Prix = 276.98
+                    Prix = 276.98,
+                    Image = "phoneImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -57,7 +59,8 @@ namespace StoreApp.Data
                     Fabriquant = "Samsung",
                     PlateForme = "Android",
                     Type = "Smart Phone",
-                    Prix = 509.98
+                    Prix = 509.98,
+                    Image = "phoneImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -66,7 +69,8 @@ namespace StoreApp.Data
                     Fabriquant = "Samsung",
                     PlateForme = "Android",
                     Type = "Smart Phone",
-                    Prix = 1579.99
+                    Prix = 1579.99,
+                    Image = "phoneImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -75,7 +79,8 @@ namespace StoreApp.Data
                     Fabriquant = "Google",
                     PlateForme = "Android",
                     Type = "Smart Phone",
-                    Prix = 520
+                    Prix = 520,
+                    Image = "phoneImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -84,7 +89,8 @@ namespace StoreApp.Data
                     Fabriquant = "Google",
                     PlateForme = "Android",
                     Type = "Smart Phone",
-                    Prix = 700.99
+                    Prix = 700.99,
+                    Image = "phoneImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -93,7 +99,8 @@ namespace StoreApp.Data
                     Fabriquant = "Google",
                     PlateForme = "Android",
                     Type = "Smart Phone",
-                    Prix = 1129.99
+                    Prix = 1129.99,
+                    Image = "phoneImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -102,7 +109,8 @@ namespace StoreApp.Data
                     Fabriquant = "Huawei",
                     PlateForme = "Android",
                     Type = "Smart Phone",
-                    Prix = 389.99
+                    Prix = 389.99,
+                    Image = "phoneImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -111,7 +119,8 @@ namespace StoreApp.Data
                     Fabriquant = "Motorola",
                     PlateForme = "Android",
                     Type = "Smart Phone",
-                    Prix = 198.99
+                    Prix = 198.99,
+                    Image = "phoneImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -120,7 +129,8 @@ namespace StoreApp.Data
                     Fabriquant = "Motorola",
                     PlateForme = "Android",
                     Type = "Smart Phone",
-                    Prix = 319.99
+                    Prix = 319.99,
+                    Image = "phoneImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -129,7 +139,8 @@ namespace StoreApp.Data
                     Fabriquant = "LG",
                     PlateForme = "Android",
                     Type = "Smart Phone",
-                    Prix = 425.82
+                    Prix = 425.82,
+                    Image = "phoneImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -138,7 +149,8 @@ namespace StoreApp.Data
                     Fabriquant = "Apple",
                     PlateForme = "IOS",
                     Type = "Smart Phone",
-                    Prix = 1399.99
+                    Prix = 1399.99,
+                    Image = "phoneImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -147,7 +159,8 @@ namespace StoreApp.Data
                     Fabriquant = "Apple",
                     PlateForme = "IOS",
                     Type = "Smart Phone",
-                    Prix = 301.16
+                    Prix = 301.16,
+                    Image = "phoneImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -156,7 +169,8 @@ namespace StoreApp.Data
                     Fabriquant = "Apple",
                     PlateForme = "IOS",
                     Type = "Smart Phone",
-                    Prix = 239.98
+                    Prix = 239.98,
+                    Image = "phoneImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -165,7 +179,8 @@ namespace StoreApp.Data
                     Fabriquant = "Apple",
                     PlateForme = "IOS",
                     Type = "Smart Phone",
-                    Prix = 768.98
+                    Prix = 768.98,
+                    Image = "phoneImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -174,7 +189,8 @@ namespace StoreApp.Data
                     Fabriquant = "Apple",
                     PlateForme = "IOS",
                     Type = "Smart Phone",
-                    Prix = 465.66
+                    Prix = 465.66,
+                    Image = "phoneImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -183,7 +199,8 @@ namespace StoreApp.Data
                     Fabriquant = "Samsung",
                     PlateForme = "Android",
                     Type = "Tablet",
-                    Prix = 330.44
+                    Prix = 330.44,
+                    Image = "tabletImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -192,7 +209,8 @@ namespace StoreApp.Data
                     Fabriquant = "Samsung",
                     PlateForme = "Android",
                     Type = "Tablet",
-                    Prix = 210.44
+                    Prix = 210.44,
+                    Image = "tabletImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -201,7 +219,8 @@ namespace StoreApp.Data
                     Fabriquant = "Samsung",
                     PlateForme = "Android",
                     Type = "Tablet",
-                    Prix = 1300.44
+                    Prix = 1300.44,
+                    Image = "tabletImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -210,7 +229,8 @@ namespace StoreApp.Data
                     Fabriquant = "Amazon",
                     PlateForme = "Android",
                     Type = "Tablet",
-                    Prix = 260.44
+                    Prix = 260.44,
+                    Image = "tabletImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -219,7 +239,8 @@ namespace StoreApp.Data
                     Fabriquant = "Lenovo",
                     PlateForme = "Android",
                     Type = "Tablet",
-                    Prix = 300.55
+                    Prix = 300.55,
+                    Image = "tabletImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -228,7 +249,8 @@ namespace StoreApp.Data
                     Fabriquant = "Lenovo",
                     PlateForme = "Android",
                     Type = "Tablet",
-                    Prix = 270.53
+                    Prix = 270.53,
+                    Image = "tabletImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -237,7 +259,8 @@ namespace StoreApp.Data
                     Fabriquant = "Amazon",
                     PlateForme = "Android",
                     Type = "Tablet",
-                    Prix = 110.23
+                    Prix = 110.23,
+                    Image = "tabletImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -246,7 +269,8 @@ namespace StoreApp.Data
                     Fabriquant = "Apple",
                     PlateForme = "IOS",
                     Type = "Tablet",
-                    Prix = 430.44
+                    Prix = 430.44,
+                    Image = "tabletImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -255,7 +279,8 @@ namespace StoreApp.Data
                     Fabriquant = "Apple",
                     PlateForme = "IOS",
                     Type = "Tablet",
-                    Prix = 910.82
+                    Prix = 910.82,
+                    Image = "tabletImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -264,7 +289,8 @@ namespace StoreApp.Data
                     Fabriquant = "Apple",
                     PlateForme = "IOS",
                     Type = "Tablet",
-                    Prix = 749.99
+                    Prix = 749.99,
+                    Image = "tabletImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -273,7 +299,8 @@ namespace StoreApp.Data
                     Fabriquant = "Apple",
                     PlateForme = "IOS",
                     Type = "Tablet",
-                    Prix = 1000.82
+                    Prix = 1000.82,
+                    Image = "tabletImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -282,7 +309,8 @@ namespace StoreApp.Data
                     Fabriquant = "Apple",
                     PlateForme = "IOS",
                     Type = "Tablet",
-                    Prix = 135
+                    Prix = 135,
+                    Image = "tabletImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -291,7 +319,8 @@ namespace StoreApp.Data
                     Fabriquant = "Apple",
                     PlateForme = "IOS",
                     Type = "Tablet",
-                    Prix = 369
+                    Prix = 369,
+                    Image = "tabletImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -300,7 +329,8 @@ namespace StoreApp.Data
                     Fabriquant = "Microsoft",
                     PlateForme = "Windows",
                     Type = "Tablet",
-                    Prix = 1300.74
+                    Prix = 1300.74,
+                    Image = "tabletImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -309,7 +339,8 @@ namespace StoreApp.Data
                     Fabriquant = "Microsoft",
                     PlateForme = "Windows",
                     Type = "Tablet",
-                    Prix = 520.44
+                    Prix = 520.44,
+                    Image = "tabletImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -318,7 +349,8 @@ namespace StoreApp.Data
                     Fabriquant = "Microsoft",
                     PlateForme = "Windows",
                     Type = "Tablet",
-                    Prix = 719.99
+                    Prix = 719.99,
+                    Image = "tabletImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -327,7 +359,8 @@ namespace StoreApp.Data
                     Fabriquant = "Microsoft",
                     PlateForme = "Windows",
                     Type = "Tablet",
-                    Prix = 800.44
+                    Prix = 800.44,
+                    Image = "tabletImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -336,7 +369,8 @@ namespace StoreApp.Data
                     Fabriquant = "Samsung",
                     PlateForme = "Wear OS",
                     Type = "Smart Watch",
-                    Prix = 270.77
+                    Prix = 270.77,
+                    Image = "watchImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -345,7 +379,8 @@ namespace StoreApp.Data
                     Fabriquant = "Fitbit",
                     PlateForme = "Wear OS",
                     Type = "Smart Watch",
-                    Prix = 220.34
+                    Prix = 220.34,
+                    Image = "watchImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -354,7 +389,8 @@ namespace StoreApp.Data
                     Fabriquant = "Apple",
                     PlateForme = "IOS",
                     Type = "Smart Watch",
-                    Prix = 329.99
+                    Prix = 329.99,
+                    Image = "watchImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -363,7 +399,8 @@ namespace StoreApp.Data
                     Fabriquant = "Garmin",
                     PlateForme = "Wear OS",
                     Type = "Smart Watch",
-                    Prix = 200.29
+                    Prix = 200.29,
+                    Image = "watchImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -372,7 +409,8 @@ namespace StoreApp.Data
                     Fabriquant = "Huawei",
                     PlateForme = "Wear OS",
                     Type = "Smart Watch",
-                    Prix = 208
+                    Prix = 208,
+                    Image = "watchImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -381,7 +419,8 @@ namespace StoreApp.Data
                     Fabriquant = "Citizen",
                     PlateForme = "Wear OS",
                     Type = "Smart Watch",
-                    Prix = 450.49
+                    Prix = 450.49,
+                    Image = "watchImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -390,7 +429,8 @@ namespace StoreApp.Data
                     Fabriquant = "Huawei",
                     PlateForme = "Wear OS",
                     Type = "Smart Watch",
-                    Prix = 67.89
+                    Prix = 67.89,
+                    Image = "watchImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -399,7 +439,8 @@ namespace StoreApp.Data
                     Fabriquant = "Garmin",
                     PlateForme = "Wear OS",
                     Type = "Smart Watch",
-                    Prix = 427.15
+                    Prix = 427.15,
+                    Image = "watchImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -408,7 +449,8 @@ namespace StoreApp.Data
                     Fabriquant = "Garmin",
                     PlateForme = "Wear OS",
                     Type = "Smart Watch",
-                    Prix = 350.23
+                    Prix = 350.23,
+                    Image = "watchImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -417,7 +459,8 @@ namespace StoreApp.Data
                     Fabriquant = "Suunto",
                     PlateForme = "Wear OS",
                     Type = "Smart Watch",
-                    Prix = 1000.82
+                    Prix = 1000.82,
+                    Image = "watchImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -426,7 +469,8 @@ namespace StoreApp.Data
                     Fabriquant = "Suunto",
                     PlateForme = "Wear OS",
                     Type = "Smart Watch",
-                    Prix = 379
+                    Prix = 379,
+                    Image = "watchImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -435,7 +479,8 @@ namespace StoreApp.Data
                     Fabriquant = "Suunto",
                     PlateForme = "Wear OS",
                     Type = "Smart Watch",
-                    Prix = 729.99
+                    Prix = 729.99,
+                    Image = "watchImage.png"
                 };
                 await database.InsertAsync(sd);
                 sd = new SmartDevice()
@@ -444,7 +489,8 @@ namespace StoreApp.Data
                     Fabriquant = "Suunto",
                     PlateForme = "Wear OS",
                     Type = "Smart Watch",
-                    Prix = 649.99
+                    Prix = 649.99,
+                    Image = "watchImage.png"
                 };
                 await database.InsertAsync(sd);
             }

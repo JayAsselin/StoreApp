@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StoreApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,12 @@ namespace StoreApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PaiementPage : ContentPage
     {
+        PaiementViewModel viewModel;
         public PaiementPage()
         {
             InitializeComponent();
+            viewModel = new PaiementViewModel();
+            BindingContext = viewModel;
         }
     }
 }

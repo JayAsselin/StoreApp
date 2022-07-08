@@ -17,7 +17,7 @@
                            BackgroundColor="Transparent"
                            TextColor="Red"
                            FontSize="Subtitle"
-                           Text="{Binding ListPanier.Count}">
+                           Text="{Binding GetCount}">
                 <Image Source="cartIcon.ico" Aspect="AspectFit"/>
             </xct:BadgeView>
             <Label Text="{Binding GetPrice, StringFormat='Montant du panier: {0}$'}" 
@@ -36,10 +36,10 @@
                                 <StackLayout Padding="-30,10,0,10" x:DataType="model:SmartDevice" 
                              Orientation="Horizontal"
                              HorizontalOptions="CenterAndExpand" Spacing="-5">
-                                    <!--<Image Source="phoneImage.png"
+                                    <Image Source="{Binding Image}"
                            Aspect="AspectFit"
                            HeightRequest="100"
-                           WidthRequest="150"/>-->
+                           WidthRequest="150"/>
                                     <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
                                         <Label Text="{Binding Modele}" FontAttributes="Bold"/>
                                         <Label Text="{Binding Fabriquant}"/>

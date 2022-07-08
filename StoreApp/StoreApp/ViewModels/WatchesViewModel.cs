@@ -69,10 +69,14 @@ namespace StoreApp.ViewModels
             {
                 var question = await Shell.Current.DisplayAlert("Attention", "Voulez vous vraiment vider le panier?", "Oui", "Non");
                 if(question)
-                    App.panier.ClearPanier(); 
+                {
+                    App.panier.ClearPanier();
+                    App.panier.CountPanier();
+                } 
             }
             
         }
-        public int GetCount => App.panier.CountPanier();
+        private int getCount;
+        public int GetCount { get => App.panier.CountPanier(); set { getCount = value; OnPropertyChanged(); } }
     }
 }

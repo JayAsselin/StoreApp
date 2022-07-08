@@ -19,6 +19,7 @@ namespace StoreApp.Views
         {
             InitializeComponent();
             viewModel = new PanierViewModel();
+            BindingContext = viewModel;
         }
 
         protected override void OnAppearing()

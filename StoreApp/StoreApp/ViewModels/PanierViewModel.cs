@@ -21,8 +21,7 @@ namespace StoreApp.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         public Command RemoveAllItemsFromCart { get; private set; }
         public Command GoToPaiement { get; private set; }
-        private Command removeFromCart;
-        public Command RemoveFromCart { get => removeFromCart; private set { removeFromCart = value; OnPropertyChanged(); } }
+        public Command RemoveFromCart { get; private set; }
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
@@ -38,6 +37,8 @@ namespace StoreApp.ViewModels
             this.GoToPaiement = new Command(PaiementPage);
             this.RemoveFromCart = new Command(RemoveItem);
             PropertyChanged += (_, __) => RemoveFromCart.ChangeCanExecute();
+            PropertyChanged += (_, __) => GoToPaiement.ChangeCanExecute();
+            PropertyChanged += (_, __) => RemoveAllItemsFromCart.ChangeCanExecute();
         }
 
         public void GetPanier()
@@ -62,7 +63,10 @@ namespace StoreApp.ViewModels
             {
                 var question = await Shell.Current.DisplayAlert("Attention", "Voulez vous vraiment vider le panier?", "Oui", "Non");
                 if (question)
+                {
                     App.panier.ClearPanier();
+                    GetPanier();
+                }
             }
 
         }
@@ -73,15 +77,16 @@ namespace StoreApp.ViewModels
             {
                 App.panier.RemoveProduct((device as SmartDevice).Id);
                 GetPanier();
-                OnPropertyChanged();
             }
         }
         public async void PaiementPage()
         {
-            await Shell.Current.GoToAsync("PaiementPage");
+            if(App.panier.CountPanier() > 0)
+                await Shell.Current.GoToAsync("PaiementPage");
         }
         private int getCount;
-        public int GetCount { get => getCount; set { getCount = App.panier.CountPanier(); OnPropertyChanged(); } }
-        public double GetPrice => App.panier.GetTotal();
+        public int GetCount { get => App.panier.CountPanier(); set { getCount = App.panier.CountPanier(); OnPropertyChanged(); } }
+        private double getPrice;
+        public double GetPrice { get => App.panier.GetTotal(); set { getPrice= App.panier.GetTotal(); OnPropertyChanged(); } }
     }
 }
