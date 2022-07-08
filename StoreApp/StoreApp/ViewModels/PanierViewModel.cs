@@ -15,10 +15,12 @@ namespace StoreApp.ViewModels
 {
     internal class PanierViewModel:INotifyPropertyChanged
     {
-        private ObservableCollection<SmartDevice> _smartDevices;
-        public ObservableCollection<SmartDevice> ListPanier { get => _smartDevices; set { _smartDevices = value; OnPropertyChanged(); } }
+        private ObservableCollection<SmartDevice> _listPanier;
+        public ObservableCollection<SmartDevice> ListPanier { get => _listPanier; set { _listPanier = value; OnPropertyChanged(); } }
 
         public event PropertyChangedEventHandler PropertyChanged;
+        public int GetCount { get; set; }
+        public double GetPrice { get; set; }
         public Command RemoveAllItemsFromCart { get; private set; }
         public Command GoToPaiement { get; private set; }
         public Command RemoveFromCart { get; private set; }
@@ -49,6 +51,10 @@ namespace StoreApp.ViewModels
             {
                 ListPanier.Add(item);
             }
+            GetPrice = App.panier.GetTotal();
+            OnPropertyChanged(nameof(GetPrice));
+            GetCount = App.panier.CountPanier();
+            OnPropertyChanged(nameof(GetCount));
         }
 
         public void RefreshList()
@@ -84,9 +90,6 @@ namespace StoreApp.ViewModels
             if(App.panier.CountPanier() > 0)
                 await Shell.Current.GoToAsync("PaiementPage");
         }
-        private int getCount;
-        public int GetCount { get => App.panier.CountPanier(); set { getCount = App.panier.CountPanier(); OnPropertyChanged(); } }
-        private double getPrice;
-        public double GetPrice { get => App.panier.GetTotal(); set { getPrice= App.panier.GetTotal(); OnPropertyChanged(); } }
+        
     }
 }

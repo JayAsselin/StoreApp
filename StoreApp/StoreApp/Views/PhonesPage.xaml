@@ -13,7 +13,8 @@
     <StackLayout>
         <xct:BadgeView x:DataType="vm:PhonesViewModel" Text="{Binding GetCount}" BackgroundColor="Transparent"
                        TextColor="Red"
-                       FontSize="Subtitle"
+                       AutoHide="True"
+                       IsAnimated="True"
                        HorizontalOptions="EndAndExpand">
             <Image Source="cartIcon.ico" Aspect="AspectFit"/>
         </xct:BadgeView>

@@ -1,16 +1,18 @@
 ﻿using StoreApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Xamarin.Forms;
 
 namespace StoreApp.Data
 {
     public class Panier:INotifyPropertyChanged
     {
-        private List<SmartDevice> content;
+        private ObservableCollection<SmartDevice> content;
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
@@ -22,21 +24,29 @@ namespace StoreApp.Data
 
         public Panier()
         {
-            content = new List<SmartDevice>();
+            content = new ObservableCollection<SmartDevice>();
         }
-        public List<SmartDevice> GetContent() { return content; }
+        public ObservableCollection<SmartDevice> GetContent() { return content; }
         public SmartDevice GetProductById(int id)
         {
-            return content.Find(p => p.Id == id);
+            return content.FirstOrDefault(p => p.Id == id);
         }
         public void AddProduct(SmartDevice product)
         {
             content.Add(product);
+            //int count = CountPanier();
+            //MessagingCenter.Send<Panier, int>(this, "getCount", count);
+            //double total = GetTotal();
+            //MessagingCenter.Send<Panier, double>(this, "getTotal", total);
         }
         public void RemoveProduct(int id)
         {
-            SmartDevice product = content.Find(p => p.Id == id);
+            SmartDevice product = content.FirstOrDefault(p => p.Id == id);
             content.Remove(product);
+            //int count = CountPanier();
+            //MessagingCenter.Send<Panier, int>(this, "getCount", count);
+            //double total = GetTotal();
+            //MessagingCenter.Send<Panier, double>(this, "getTotal", total);
         }
         public void ClearPanier()
         {

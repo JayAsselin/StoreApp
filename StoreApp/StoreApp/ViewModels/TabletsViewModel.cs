@@ -15,6 +15,7 @@ namespace StoreApp.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<SmartDevice> Tablets { get; set; }
+        public int GetCount { get; set; }
         public Command AddToCart { get; private set; }
         public Command RemoveAllItemsFromCart { get; private set; }
 
@@ -45,6 +46,8 @@ namespace StoreApp.ViewModels
         public void RefreshList()
         {
             GetList();
+            GetCount = App.panier.CountPanier();
+            OnPropertyChanged(nameof(GetCount));
         }
 
         public TabletsViewModel()
@@ -60,6 +63,8 @@ namespace StoreApp.ViewModels
                 return;
 
             App.panier.AddProduct(item);
+            GetCount = App.panier.CountPanier();
+            OnPropertyChanged(nameof(GetCount));
         }
         public async void EmptyCart()
         {
@@ -71,12 +76,11 @@ namespace StoreApp.ViewModels
                 if (question)
                 {
                     App.panier.ClearPanier();
-                    App.panier.CountPanier();
+                    GetCount = App.panier.CountPanier();
+                    OnPropertyChanged(nameof(GetCount));
                 }
             }
 
         }
-        private int getCount;
-        public int GetCount { get => App.panier.CountPanier(); set { getCount = value; OnPropertyChanged(); } }
     }
 }

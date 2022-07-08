@@ -16,11 +16,12 @@
             <xct:BadgeView x:DataType="vm:PanierViewModel" HorizontalOptions="End" 
                            BackgroundColor="Transparent"
                            TextColor="Red"
-                           FontSize="Subtitle"
+                           AutoHide="True"
+                           IsAnimated="True"
                            Text="{Binding GetCount}">
                 <Image Source="cartIcon.ico" Aspect="AspectFit"/>
             </xct:BadgeView>
-            <Label Text="{Binding GetPrice, StringFormat='Montant du panier: {0}$'}" 
+            <Label Text="{Binding GetPrice, StringFormat='Montant de la facture: {0}$'}" 
                    FontAttributes="Bold"
                    HorizontalOptions="EndAndExpand"/>
             <CollectionView ItemsSource="{Binding ListPanier}">

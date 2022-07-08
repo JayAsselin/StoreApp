@@ -24,9 +24,9 @@ namespace StoreApp.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            viewModel.RefreshList();
             BindingContext = null;
             BindingContext = this.viewModel;
+            viewModel.RefreshList();
         }
     }
 }
