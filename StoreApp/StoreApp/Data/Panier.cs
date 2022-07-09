@@ -34,19 +34,11 @@ namespace StoreApp.Data
         public void AddProduct(SmartDevice product)
         {
             content.Add(product);
-            //int count = CountPanier();
-            //MessagingCenter.Send<Panier, int>(this, "getCount", count);
-            //double total = GetTotal();
-            //MessagingCenter.Send<Panier, double>(this, "getTotal", total);
         }
         public void RemoveProduct(int id)
         {
             SmartDevice product = content.FirstOrDefault(p => p.Id == id);
             content.Remove(product);
-            //int count = CountPanier();
-            //MessagingCenter.Send<Panier, int>(this, "getCount", count);
-            //double total = GetTotal();
-            //MessagingCenter.Send<Panier, double>(this, "getTotal", total);
         }
         public void ClearPanier()
         {

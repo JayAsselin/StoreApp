@@ -39,47 +39,79 @@ namespace StoreApp.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex);
+               await Shell.Current.DisplayAlert("Erreur", ex.Message, "Ok");
             }
         }
 
         public void RefreshList()
         {
-            GetList();
-            GetCount = App.panier.CountPanier();
-            OnPropertyChanged(nameof(GetCount));
+            try
+            {
+                GetList();
+                GetCount = App.panier.CountPanier();
+                OnPropertyChanged(nameof(GetCount));
+            }
+            catch (Exception ex)
+            {
+                Shell.Current.DisplayAlert("Erreur", ex.Message, "Ok");
+            }
+            
         }
 
         public TabletsViewModel()
         {
-            this.Tablets = new ObservableCollection<SmartDevice>();
-            this.AddToCart = new Command<SmartDevice>(OnTapped);
-            this.RemoveAllItemsFromCart = new Command(EmptyCart);
+            try
+            {
+                this.Tablets = new ObservableCollection<SmartDevice>();
+                this.AddToCart = new Command<SmartDevice>(OnTapped);
+                this.RemoveAllItemsFromCart = new Command(EmptyCart);
+            }
+            catch (Exception ex)
+            {
+                Shell.Current.DisplayAlert("Erreur", ex.Message, "Ok");
+            }
+            
         }
 
         private void OnTapped(SmartDevice item)
         {
-            if (item == null)
-                return;
+            try
+            {
+                if (item == null)
+                    return;
 
-            App.panier.AddProduct(item);
-            GetCount = App.panier.CountPanier();
-            OnPropertyChanged(nameof(GetCount));
+                App.panier.AddProduct(item);
+                GetCount = App.panier.CountPanier();
+                OnPropertyChanged(nameof(GetCount));
+            }
+            catch (Exception ex)
+            {
+                Shell.Current.DisplayAlert("Erreur", ex.Message, "Ok");
+            }
+            
         }
         public async void EmptyCart()
         {
-            if (App.panier.CountPanier() == 0)
-                await Shell.Current.DisplayAlert("Info", "Le panier est vide", "Ok");
-            else
+            try
             {
-                var question = await Shell.Current.DisplayAlert("Attention", "Voulez vous vraiment vider le panier?", "Oui", "Non");
-                if (question)
+                if (App.panier.CountPanier() == 0)
+                    await Shell.Current.DisplayAlert("Info", "Le panier est vide", "Ok");
+                else
                 {
-                    App.panier.ClearPanier();
-                    GetCount = App.panier.CountPanier();
-                    OnPropertyChanged(nameof(GetCount));
+                    var question = await Shell.Current.DisplayAlert("Attention", "Voulez vous vraiment vider le panier?", "Oui", "Non");
+                    if (question)
+                    {
+                        App.panier.ClearPanier();
+                        GetCount = App.panier.CountPanier();
+                        OnPropertyChanged(nameof(GetCount));
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+               await Shell.Current.DisplayAlert("Erreur", ex.Message, "Ok");
+            }
+            
 
         }
     }

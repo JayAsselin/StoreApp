@@ -24,6 +24,7 @@ namespace StoreApp.Data
             string dbPath = Path.Combine(baseDbPath, dbName);
             database = new SQLiteAsyncConnection(dbPath, openFlags);
             var res = database.CreateTableAsync<SmartDevice>().Result;
+            //var invoiceTable = database.CreateTableAsync<Invoice>().Result;
             if (res == CreateTableResult.Created)
                 PopulateDb();
         }
@@ -501,11 +502,6 @@ namespace StoreApp.Data
 
         }
 
-        public Task<List<Panier>> GetAllAsync()
-        {
-            // Shows all database entries into a list
-            return database.Table<Panier>().ToListAsync();
-        }
         public Task<List<SmartDevice>> GetByTypeAsync(string type)
         {
             // Shows all database entries into a list
@@ -539,6 +535,16 @@ namespace StoreApp.Data
         {
             // Might not need it
             return database.DeleteAsync(id);
+        }
+
+        public Task<int> InsertInvoiceAsync(Invoice iv)
+        {
+            return database.InsertAsync(iv);
+        }
+        public Task<List<Invoice>> GetAllInvoicesAsync()
+        {
+            // Shows all database entries into a list
+            return database.Table<Invoice>().ToListAsync();
         }
     }
 }

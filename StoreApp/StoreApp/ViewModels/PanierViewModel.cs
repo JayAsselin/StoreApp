@@ -1,4 +1,5 @@
-﻿using StoreApp.Data;
+﻿using Newtonsoft.Json;
+using StoreApp.Data;
 using StoreApp.Models;
 using System;
 using System.Collections.Generic;
@@ -34,27 +35,43 @@ namespace StoreApp.ViewModels
 
         public PanierViewModel()
         {
-            ListPanier = new ObservableCollection<SmartDevice>();
-            this.RemoveAllItemsFromCart = new Command(EmptyCart);
-            this.GoToPaiement = new Command(PaiementPage);
-            this.RemoveFromCart = new Command(RemoveItem);
-            PropertyChanged += (_, __) => RemoveFromCart.ChangeCanExecute();
-            PropertyChanged += (_, __) => GoToPaiement.ChangeCanExecute();
-            PropertyChanged += (_, __) => RemoveAllItemsFromCart.ChangeCanExecute();
+            try
+            {
+                ListPanier = new ObservableCollection<SmartDevice>();
+                this.RemoveAllItemsFromCart = new Command(EmptyCart);
+                this.GoToPaiement = new Command(PaiementPage);
+                this.RemoveFromCart = new Command(RemoveItem);
+                PropertyChanged += (_, __) => RemoveFromCart.ChangeCanExecute();
+                PropertyChanged += (_, __) => GoToPaiement.ChangeCanExecute();
+                PropertyChanged += (_, __) => RemoveAllItemsFromCart.ChangeCanExecute();
+            }
+            catch (Exception ex)
+            {
+                Shell.Current.DisplayAlert("Erreur", ex.Message, "Ok");
+            }
+            
         }
 
         public void GetPanier()
         {
-            this.ListPanier.Clear();
-            var items = App.panier.GetContent();
-            foreach (var item in items)
+            try
             {
-                ListPanier.Add(item);
+                this.ListPanier.Clear();
+                var items = App.panier.GetContent();
+                foreach (var item in items)
+                {
+                    ListPanier.Add(item);
+                }
+                GetPrice = App.panier.GetTotal();
+                OnPropertyChanged(nameof(GetPrice));
+                GetCount = App.panier.CountPanier();
+                OnPropertyChanged(nameof(GetCount));
             }
-            GetPrice = App.panier.GetTotal();
-            OnPropertyChanged(nameof(GetPrice));
-            GetCount = App.panier.CountPanier();
-            OnPropertyChanged(nameof(GetCount));
+            catch (Exception ex)
+            {
+                Shell.Current.DisplayAlert("Erreur", ex.Message, "Ok");
+            }
+            
         }
 
         public void RefreshList()
@@ -63,32 +80,59 @@ namespace StoreApp.ViewModels
         }
         public async void EmptyCart()
         {
-            if (App.panier.CountPanier() == 0)
-                await Shell.Current.DisplayAlert("Info", "Le panier est vide", "Ok");
-            else
+            try
             {
-                var question = await Shell.Current.DisplayAlert("Attention", "Voulez vous vraiment vider le panier?", "Oui", "Non");
-                if (question)
+                if (App.panier.CountPanier() == 0)
+                    await Shell.Current.DisplayAlert("Info", "Le panier est vide", "Ok");
+                else
                 {
-                    App.panier.ClearPanier();
-                    GetPanier();
+                    var question = await Shell.Current.DisplayAlert("Attention", "Voulez vous vraiment vider le panier?", "Oui", "Non");
+                    if (question)
+                    {
+                        App.panier.ClearPanier();
+                        GetPanier();
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Erreur", ex.Message, "Ok");
+            }
+            
 
         }
         public async void RemoveItem(object device)
         {
-            var question = await Shell.Current.DisplayAlert("Attention", "Voulez vous vraiment enlever cette item du panier?", "Oui", "Non");
-            if (question)
+            try
             {
-                App.panier.RemoveProduct((device as SmartDevice).Id);
-                GetPanier();
+                var question = await Shell.Current.DisplayAlert("Attention", "Voulez vous vraiment enlever cette item du panier?", "Oui", "Non");
+                if (question)
+                {
+                    App.panier.RemoveProduct((device as SmartDevice).Id);
+                    GetPanier();
+                }
             }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Erreur", ex.Message, "Ok");
+            }
+
         }
         public async void PaiementPage()
         {
-            if(App.panier.CountPanier() > 0)
-                await Shell.Current.GoToAsync("PaiementPage");
+            try
+            {
+                if (App.panier.CountPanier() > 0)
+                {
+                    string jsonPanier = JsonConvert.SerializeObject(ListPanier);
+                    await Shell.Current.GoToAsync($"{nameof(PaiementPage)}?panier={jsonPanier}");
+                }
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Erreur", ex.Message, "Ok");
+            }
+
         }
         
     }
