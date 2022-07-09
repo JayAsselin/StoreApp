@@ -48,9 +48,9 @@ namespace StoreApp.ViewModels
         public double GetPrice { get; set; }
         public Command PaiementCanceled { get; }
         public Command PaiementConfirmed { get; }
-        //public Invoice invoice;
-        //public PersonInfo personInfo;
-        //public Dictionary<PersonInfo, SmartDevice> InvoiceList = new Dictionary<PersonInfo, SmartDevice>();
+        public Invoice invoiceInfo;
+        public PersonInfo personInfo;
+        public Dictionary<PersonInfo, string> Invoice = new Dictionary<PersonInfo, string>();
         string nom;
         string prenom;
         string adresse;
@@ -90,9 +90,10 @@ namespace StoreApp.ViewModels
         {
             try
             {
-                var question = await Shell.Current.DisplayAlert("Attention", "Etes-vous sur de vouloir le paiement?", "Oui", "Non");
+                var question = await Shell.Current.DisplayAlert("Attention", "Etes-vous sur de vouloir quitter la page?", "Oui", "Non");
                 if (question)
-                    await Shell.Current.GoToAsync("..");
+                    await Shell.Current.GoToAsync("//accueil");
+                    
             }
             catch (Exception ex)
             {
@@ -114,22 +115,24 @@ namespace StoreApp.ViewModels
             try
             {
                 await Shell.Current.DisplayAlert("Merci", "Merci d'avoir fait affaire avec nous!", "Ok");
+                personInfo = new PersonInfo
+                {
+                    LName = Nom,
+                    FName = Prenom,
+                    Adress = Adresse,
+                    Phone = Telephone,
+                    Email = Courriel,
+                    CreditCard = CarteCredit
+                };
+                string listAchat = JsonConvert.SerializeObject(JsonList);
+                Invoice.Add(personInfo, listAchat);
+                string newInvoice = JsonConvert.SerializeObject(Invoice);
+                invoiceInfo = new Invoice
+                {
+                    InvoiceContent = newInvoice
+                };
+                await App.dbContext.InsertInvoiceAsync(invoiceInfo);
                 App.panier.ClearPanier();
-                //personInfo = new PersonInfo
-                //{
-                //    LName = Nom,
-                //    FName = Prenom,
-                //    Adress = Adresse,
-                //    Phone = Telephone,
-                //    Email = Courriel,
-                //    CreditCard = CarteCredit
-                //};
-
-                //InvoiceList.Add(personInfo, panier.ListPanier);
-                //invoice = new Invoice
-                //{
-                //    InvoiceContent = 
-                //}
                 await Shell.Current.GoToAsync("..");
             }
             catch (Exception ex)

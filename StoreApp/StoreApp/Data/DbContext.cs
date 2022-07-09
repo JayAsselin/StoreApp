@@ -24,7 +24,7 @@ namespace StoreApp.Data
             string dbPath = Path.Combine(baseDbPath, dbName);
             database = new SQLiteAsyncConnection(dbPath, openFlags);
             var res = database.CreateTableAsync<SmartDevice>().Result;
-            //var invoiceTable = database.CreateTableAsync<Invoice>().Result;
+            _ = database.CreateTableAsync<Invoice>().Result;
             if (res == CreateTableResult.Created)
                 PopulateDb();
         }

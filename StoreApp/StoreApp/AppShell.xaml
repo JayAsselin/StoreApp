@@ -20,7 +20,7 @@
             <ShellContent Route="watches" Title="Montres intelligentes" 
                           ContentTemplate="{DataTemplate views:WatchesPage}"/>
         </Tab>
-        
+
         <ShellContent Route="panier" Title="Voir Panier" 
                       Icon="cartIcon.ico" 
                       ContentTemplate="{DataTemplate views:PanierPage}"/>
