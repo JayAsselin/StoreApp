@@ -32,9 +32,9 @@
                            HeightRequest="100"
                            WidthRequest="150"/>
                                 <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
-                                    <Label Text="{Binding Modele}" FontAttributes="Bold"/>
-                                    <Label Text="{Binding Fabriquant}"/>
-                                    <Label Text="{Binding Type}" FontAttributes="Italic"/>
+                                    <Label Text="{Binding Modele}" FontAttributes="Bold" TextColor="Black"/>
+                                    <Label Text="{Binding Fabriquant}" TextColor="Black"/>
+                                    <Label Text="{Binding Type}" FontAttributes="Italic" TextColor="Black"/>
                                     <Label Text="{Binding Prix, StringFormat='Prix: {0}$'}" TextColor="Red"/>
                                 </StackLayout>
                             </StackLayout>

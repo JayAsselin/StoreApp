@@ -5,20 +5,20 @@
              xmlns:model="clr-namespace:StoreApp.Models"
              Shell.PresentationMode="ModalAnimated">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Page de paiement" FontSize="Title" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+        <StackLayout BackgroundColor="#333333">
+            <Label Text="Page de paiement" FontSize="Title" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="Beige"/>
             <Grid RowDefinitions="auto" ColumnDefinitions="auto">
-                <Label Text="Nom:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body"/>
+                <Label Text="Nom:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body" TextColor="Beige"/>
                 <Entry x:Name="nom" Grid.Column="1" Keyboard="Text" Text="{Binding Nom, Mode=TwoWay}"/>
-                <Label Grid.Row="1" Text="Prenom:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body"/>
+                <Label Grid.Row="1" Text="Prenom:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body" TextColor="Beige"/>
                 <Entry x:Name="prenom" Grid.Row="1" Grid.Column="1" Keyboard="Text" Text="{Binding Prenom, Mode=TwoWay}"/>
-                <Label Grid.Row="2" Text="Adresse:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body"/>
+                <Label Grid.Row="2" Text="Adresse:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body" TextColor="Beige"/>
                 <Entry x:Name="adresse" Grid.Row="2" Grid.Column="1" Keyboard="Text" Text="{Binding Adresse, Mode=TwoWay}"/>
-                <Label Grid.Row="3" Text="Telephone:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body"/>
+                <Label Grid.Row="3" Text="Telephone:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body" TextColor="Beige"/>
                 <Entry x:Name="telephone" Grid.Row="3" Grid.Column="1" Keyboard="Telephone" Text="{Binding Telephone, Mode=TwoWay}"/>
-                <Label Grid.Row="4" Text="Courriel:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body"/>
+                <Label Grid.Row="4" Text="Courriel:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body" TextColor="Beige"/>
                 <Entry x:Name="courriel" Grid.Row="4" Grid.Column="1" Keyboard="Email" Text="{Binding Courriel, Mode=TwoWay}"/>
-                <Label Grid.Row="5" Text="Carte de credit:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body"/>
+                <Label Grid.Row="5" Text="Carte de credit:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body" TextColor="Beige"/>
                 <Entry x:Name="carteCredit" Grid.Row="5" Grid.Column="1" Keyboard="Numeric" Text="{Binding CarteCredit, Mode=TwoWay}"/>
 
                 <Frame Grid.Row="6" Grid.RowSpan="8" Grid.ColumnSpan="2">
@@ -33,7 +33,7 @@
                            HeightRequest="100"
                            WidthRequest="150"/>
                             <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
-                                        <Label Text="{Binding Modele}" FontAttributes="Bold"/>
+                                        <Label Text="{Binding Modele}" FontAttributes="Bold" TextColor="Black"/>
                                         <Label Text="{Binding Prix, StringFormat='Prix: {0}$'}" TextColor="Red"/>
                             </StackLayout>
                         </StackLayout>
@@ -43,10 +43,10 @@
                 </Frame>
             </Grid>
             <Label Text="{Binding GetPrice, StringFormat='Total de la facture: {0}$'}" 
-                   HorizontalOptions="Center" FontSize="Large" FontAttributes="Bold"/>
+                   HorizontalOptions="Center" FontSize="Large" FontAttributes="Bold" TextColor="Beige"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0,0,0,10" Spacing="50">
-                <Button Text="Annuler" CornerRadius="5" BackgroundColor="LightCoral" Command="{Binding PaiementCanceled}"/>
-                <Button Text="Payer" CornerRadius="5" BackgroundColor="LightGreen" Command="{Binding PaiementConfirmed}"/>
+                <Button Text="Annuler" CornerRadius="5" BackgroundColor="LightCoral" Command="{Binding PaiementCanceled}" TextColor="Black"/>
+                <Button Text="Payer" CornerRadius="5" BackgroundColor="LightGreen" Command="{Binding PaiementConfirmed}" TextColor="Black"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

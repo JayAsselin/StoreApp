@@ -50,7 +50,7 @@ namespace StoreApp.ViewModels
         public Command PaiementConfirmed { get; }
         public Invoice invoiceInfo;
         public PersonInfo personInfo;
-        public Dictionary<PersonInfo, string> Invoice = new Dictionary<PersonInfo, string>();
+        public List<string> Invoice = new List<string>();
         string nom;
         string prenom;
         string adresse;
@@ -124,8 +124,10 @@ namespace StoreApp.ViewModels
                     Email = Courriel,
                     CreditCard = CarteCredit
                 };
+                string buyerInfo = JsonConvert.SerializeObject(personInfo, Formatting.Indented);
                 string listAchat = JsonConvert.SerializeObject(JsonList);
-                Invoice.Add(personInfo, listAchat);
+                Invoice.Add(buyerInfo);
+                Invoice.Add(listAchat);
                 string newInvoice = JsonConvert.SerializeObject(Invoice);
                 invoiceInfo = new Invoice
                 {

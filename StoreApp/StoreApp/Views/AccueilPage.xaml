@@ -8,42 +8,42 @@
             <Image Source="eShopLogo.jpg" Aspect="AspectFill"/>
             <Label Text="Bienvenue chez Amazed Electronics!"
                    FontSize="Large" FontAttributes="Bold"
-                HorizontalOptions="CenterAndExpand" />
+                HorizontalOptions="CenterAndExpand" TextColor="Black" />
             <Label Text="Venez visiter notre magasin virtuel des maintenants!"
                    FontSize="Body"
-                   HorizontalOptions="CenterAndExpand"/>
+                   HorizontalOptions="CenterAndExpand" TextColor="Black"/>
             <Grid RowDefinitions="auto" ColumnDefinitions="auto">
                 <Label Text="Ou venez nous visiter en magasin!"
                        Grid.Row="2" Grid.ColumnSpan="2"
                        HorizontalOptions="CenterAndExpand" 
-                       FontSize="Body" FontAttributes="Bold"/>
+                       FontSize="Body" FontAttributes="Bold" TextColor="Black"/>
                 <Label Text="24 rue Greber a Gatineau"
                        Grid.Row="3"
                        Grid.ColumnSpan="2"
                        FontAttributes="Bold"
-                       HorizontalOptions="CenterAndExpand"/>
+                       HorizontalOptions="CenterAndExpand" TextColor="Black"/>
                 <Label Text="Contactez-nous par telephone" 
                        Grid.Row="7"
                        Grid.ColumnSpan="2"
                        FontAttributes="Bold"
                        FontSize="Body"
-                       HorizontalOptions="CenterAndExpand"/>
+                       HorizontalOptions="CenterAndExpand" TextColor="Black"/>
                 <Label Text="819 664-6859" 
                        Grid.Row="8" 
                        Grid.ColumnSpan="2" 
                        HorizontalOptions="CenterAndExpand"
-                       FontAttributes="Bold"/>
+                       FontAttributes="Bold" TextColor="Black"/>
                 <Label Text="Ou par Courriel"
                        Grid.Row="10"
                        Grid.ColumnSpan="2"
                        FontSize="Body"
                        FontAttributes="Bold"
-                       HorizontalOptions="CenterAndExpand"/>
+                       HorizontalOptions="CenterAndExpand" TextColor="Black"/>
                 <Label Text="AmazedElectronics@gmail.ca"
                        Grid.Row="11"
                        Grid.ColumnSpan="2"
                        FontAttributes="Bold"
-                       HorizontalOptions="CenterAndExpand"/>
+                       HorizontalOptions="CenterAndExpand" TextColor="Black"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

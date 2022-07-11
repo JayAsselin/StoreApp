@@ -23,7 +23,7 @@
             </sfbadge:SfBadgeView>
             <Label Text="{Binding GetPrice, StringFormat='Montant de la facture: {0}$'}" 
                    FontAttributes="Bold"
-                   HorizontalOptions="EndAndExpand"/>
+                   HorizontalOptions="EndAndExpand" TextColor="Black"/>
             <CollectionView ItemsSource="{Binding ListPanier}">
                 <CollectionView.EmptyView>
                     <Label Text="Le panier est vide" FontSize="Large" TextColor="Red" 
@@ -42,9 +42,9 @@
                            HeightRequest="100"
                            WidthRequest="150"/>
                                     <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
-                                        <Label Text="{Binding Modele}" FontAttributes="Bold"/>
-                                        <Label Text="{Binding Fabriquant}"/>
-                                        <Label Text="{Binding Type}" FontAttributes="Italic"/>
+                                        <Label Text="{Binding Modele}" FontAttributes="Bold" TextColor="Black"/>
+                                        <Label Text="{Binding Fabriquant}" TextColor="Black"/>
+                                        <Label Text="{Binding Type}" FontAttributes="Italic" TextColor="Black"/>
                                         <Label Text="{Binding Prix, StringFormat='Prix: {0}$'}" TextColor="Red"/>
                                     </StackLayout>
                                 </StackLayout>
