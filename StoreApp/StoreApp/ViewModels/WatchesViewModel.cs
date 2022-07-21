@@ -11,20 +11,12 @@ using Xamarin.Forms;
 
 namespace StoreApp.ViewModels
 {
-    internal class WatchesViewModel : INotifyPropertyChanged
+    internal class WatchesViewModel : BaseViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<SmartDevice> Watches { get; set; }
         public int GetCount { get; set; }
         public Command AddToCart { get; private set; }
         public Command RemoveAllItemsFromCart { get; private set; }
-
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            if (PropertyChanged == null)
-                return;
-            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         private async void GetList()
         {

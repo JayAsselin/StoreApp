@@ -3,45 +3,105 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:StoreApp.ViewModels" x:DataType="viewmodels:PaiementViewModel"
              x:Class="StoreApp.Views.PaiementPage"
              xmlns:model="clr-namespace:StoreApp.Models"
-             Shell.PresentationMode="ModalAnimated">
+             Shell.PresentationMode="ModalAnimated"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
     <ContentPage.Content>
         <StackLayout BackgroundColor="#333333">
             <Label Text="Page de paiement" FontSize="Title" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="Beige"/>
-            <Grid RowDefinitions="auto" ColumnDefinitions="auto">
-                <Label Text="Nom:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body" TextColor="Beige"/>
-                <Entry x:Name="nom" Grid.Column="1" Keyboard="Text" Text="{Binding Nom, Mode=TwoWay}"/>
-                <Label Grid.Row="1" Text="Prenom:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body" TextColor="Beige"/>
-                <Entry x:Name="prenom" Grid.Row="1" Grid.Column="1" Keyboard="Text" Text="{Binding Prenom, Mode=TwoWay}"/>
-                <Label Grid.Row="2" Text="Adresse:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body" TextColor="Beige"/>
-                <Entry x:Name="adresse" Grid.Row="2" Grid.Column="1" Keyboard="Text" Text="{Binding Adresse, Mode=TwoWay}"/>
-                <Label Grid.Row="3" Text="Telephone:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body" TextColor="Beige"/>
-                <Entry x:Name="telephone" Grid.Row="3" Grid.Column="1" Keyboard="Telephone" Text="{Binding Telephone, Mode=TwoWay}"/>
-                <Label Grid.Row="4" Text="Courriel:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body" TextColor="Beige"/>
-                <Entry x:Name="courriel" Grid.Row="4" Grid.Column="1" Keyboard="Email" Text="{Binding Courriel, Mode=TwoWay}"/>
-                <Label Grid.Row="5" Text="Carte de credit:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body" TextColor="Beige"/>
-                <Entry x:Name="carteCredit" Grid.Row="5" Grid.Column="1" Keyboard="Numeric" Text="{Binding CarteCredit, Mode=TwoWay}"/>
 
-                <Frame Grid.Row="6" Grid.RowSpan="8" Grid.ColumnSpan="2">
-                    <CollectionView ItemsSource="{Binding JsonDevices}">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                        <StackLayout
+            <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Nom:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body" TextColor="Beige"/>
+                    <Entry x:Name="nom" Keyboard="Text" Text="{Binding Nom, Mode=TwoWay}" HorizontalOptions="FillAndExpand">
+                        <Entry.Behaviors>
+                            <xct:TextValidationBehavior Flags="ValidateOnUnfocusing" x:Name="lNameValidation"/>
+                        </Entry.Behaviors>
+                    </Entry>
+                </StackLayout>
+                <Label Text="Vous devez entrer un nom" TextColor="Red" IsVisible="{Binding IsNotValid, Source={x:Reference lNameValidation}}"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Prenom:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body" TextColor="Beige"/>
+                    <Entry x:Name="prenom" HorizontalOptions="FillAndExpand" Keyboard="Text" Text="{Binding Prenom, Mode=TwoWay}">
+                        <Entry.Behaviors>
+                            <xct:TextValidationBehavior Flags="ValidateOnUnfocusing" x:Name="fNameValidation"/>
+                        </Entry.Behaviors>
+                    </Entry>
+                </StackLayout>
+                <Label Text="Vous devez entrer un prenom" TextColor="Red" IsVisible="{Binding IsNotValid, Source={x:Reference fNameValidation}}"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Adresse:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body" TextColor="Beige"/>
+                    <Entry x:Name="adresse" HorizontalOptions="FillAndExpand" Keyboard="Text" Text="{Binding Adresse, Mode=TwoWay}">
+                        <Entry.Behaviors>
+                            <xct:TextValidationBehavior Flags="ValidateOnUnfocusing" x:Name="adressValidation" RegexPattern="^\d{1,}\s\w+\s\w+$"/>
+                        </Entry.Behaviors>
+                    </Entry>
+                </StackLayout>
+                <Label Text="Vous devez entrer une adresse sous le format '# rue' 'nom de rue'" TextColor="Red" IsVisible="{Binding IsNotValid, Source={x:Reference adressValidation}}"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Telephone:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body" TextColor="Beige"/>
+                    <Entry x:Name="telephone" HorizontalOptions="FillAndExpand" Keyboard="Telephone" Text="{Binding Telephone, Mode=TwoWay}">
+                        <Entry.Behaviors>
+                            <xct:TextValidationBehavior Flags="ValidateOnUnfocusing" x:Name="phoneValidation" RegexPattern="^\(\d{3}\)\s\d{3}-\d{4}$"/>
+                        </Entry.Behaviors>
+                    </Entry>
+                </StackLayout>
+                <Label Text="Vous devez entrer un numero de telephone sous le format (555) 555-5555" TextColor="Red" IsVisible="{Binding IsNotValid, Source={x:Reference phoneValidation}}"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Courriel:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body" TextColor="Beige"/>
+                    <Entry x:Name="courriel" HorizontalOptions="FillAndExpand" Keyboard="Email" Text="{Binding Courriel, Mode=TwoWay}">
+                        <Entry.Behaviors>
+                            <xct:EmailValidationBehavior x:Name="emailValidation" Flags="ValidateOnUnfocusing"/>
+                        </Entry.Behaviors>
+                    </Entry>
+                </StackLayout>
+                <Label Text="Entrer une adresse courriel valide" 
+                       TextColor="Red" IsVisible="{Binding IsNotValid, Source={x:Reference emailValidation}}"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Carte de credit:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body" TextColor="Beige"/>
+                    <Entry x:Name="carteCredit" HorizontalOptions="FillAndExpand" Keyboard="Numeric" Text="{Binding CarteCredit, Mode=TwoWay}">
+                        <Entry.Behaviors>
+                            <xct:TextValidationBehavior Flags="ValidateOnUnfocusing" x:Name="ccValidation" MinimumLength="10" MaximumLength="14"/>
+                        </Entry.Behaviors>
+                    </Entry>
+                </StackLayout>
+                <Label Text="Vous devez entrer une carte de credit valide 10 a 14 chiffre" TextColor="Red" IsVisible="{Binding IsNotValid, Source={x:Reference ccValidation}}"/>
+            </StackLayout>
+
+            <Frame>
+                <CollectionView ItemsSource="{Binding JsonDevices}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout
                              Orientation="Horizontal"
                              HorizontalOptions="CenterAndExpand" x:DataType="model:SmartDevice">
-                            <Image Source="{Binding Image}"
+                                <Image Source="{Binding Image}"
                            Aspect="AspectFit"
                            HeightRequest="100"
                            WidthRequest="150"/>
-                            <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
-                                        <Label Text="{Binding Modele}" FontAttributes="Bold" TextColor="Black"/>
-                                        <Label Text="{Binding Prix, StringFormat='Prix: {0}$'}" TextColor="Red"/>
+                                <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
+                                    <Label Text="{Binding Modele}" FontAttributes="Bold" TextColor="Black"/>
+                                    <Label Text="{Binding Prix, StringFormat='Prix: {0}$'}" TextColor="Red"/>
+                                </StackLayout>
                             </StackLayout>
-                        </StackLayout>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </Frame>
-            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
             <Label Text="{Binding GetPrice, StringFormat='Total de la facture: {0}$'}" 
                    HorizontalOptions="Center" FontSize="Large" FontAttributes="Bold" TextColor="Beige"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0,0,0,10" Spacing="50">

@@ -24,6 +24,7 @@
         <ShellContent Route="panier" Title="Voir Panier" 
                       Icon="cartIcon.ico" 
                       ContentTemplate="{DataTemplate views:PanierPage}"/>
+        <ShellContent Route="facture" Title="Facture" Icon="invoiceIcon.ico" ContentTemplate="{DataTemplate views:FacturePage}"/>
     </TabBar>
 
 </Shell>

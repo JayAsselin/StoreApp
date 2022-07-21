@@ -12,21 +12,13 @@ using System.Windows.Input;
 
 namespace StoreApp.ViewModels
 {
-    internal class PhonesViewModel : INotifyPropertyChanged
+    internal class PhonesViewModel : BaseViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<SmartDevice> Phones { get; set; }
         public int GetCount { get; set; }
         public Command AddToCart { get; private set; }
         public Command RemoveAllItemsFromCart { get; private set; }
         
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            if(PropertyChanged == null)
-                return;
-            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         private async void GetList()
         {
             try

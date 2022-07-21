@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:model="clr-namespace:StoreApp.Models"
+             x:Class="StoreApp.Views.FacturePage"
+             Title="Liste des factures">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame>
+                <CollectionView ItemsSource="{Binding Invoices}">
+                    <CollectionView.EmptyView>
+                        <Label Text="Aucune facture a afficher" TextColor="Red" HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" FontSize="Title"/>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Label x:DataType="model:PersonInfo" Text="{Binding LName}" TextColor="Black"/>
+                                <Label x:DataType="model:PersonInfo" Text="{Binding FName}" TextColor="Black"/>
+                                <Label x:DataType="model:PersonInfo" Text="{Binding Adress}" TextColor="Black"/>
+                                <Label x:DataType="model:PersonInfo" Text="{Binding Phone}" TextColor="Black"/>
+                                <Label x:DataType="model:PersonInfo" Text="{Binding Email}" TextColor="Black"/>
+                                <StackLayout x:DataType="model:SmartDevice" 
+                             Orientation="Horizontal"
+                             HorizontalOptions="CenterAndExpand" Padding="-30,0,0,0">
+                                    <Image Source="{Binding Image}" Aspect="AspectFit"
+                           HeightRequest="125" WidthRequest="125"/>
+                                    <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
+                                        <Label Text="{Binding Modele}" FontAttributes="Bold" TextColor="Black"/>
+                                        <Label Text="{Binding Fabriquant}" TextColor="Black"/>
+                                        <Label Text="{Binding Type}" FontAttributes="Italic" TextColor="Black"/>
+                                        <Label Text="{Binding Prix, StringFormat='Prix: {0}$'}" TextColor="Red"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

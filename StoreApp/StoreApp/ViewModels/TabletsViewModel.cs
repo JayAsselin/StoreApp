@@ -11,20 +11,12 @@ using Xamarin.Forms;
 
 namespace StoreApp.ViewModels
 {
-    internal class TabletsViewModel:INotifyPropertyChanged
+    internal class TabletsViewModel:BaseViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<SmartDevice> Tablets { get; set; }
         public int GetCount { get; set; }
         public Command AddToCart { get; private set; }
         public Command RemoveAllItemsFromCart { get; private set; }
-
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            if (PropertyChanged == null)
-                return;
-            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         private async void GetList()
         {

@@ -14,24 +14,16 @@ using Xamarin.Forms;
 
 namespace StoreApp.ViewModels
 {
-    internal class PanierViewModel:INotifyPropertyChanged
+    internal class PanierViewModel:BaseViewModel
     {
         private ObservableCollection<SmartDevice> _listPanier;
-        public ObservableCollection<SmartDevice> ListPanier { get => _listPanier; set { _listPanier = value; OnPropertyChanged(); } }
+        public ObservableCollection<SmartDevice> ListPanier { get => _listPanier; set { SetProperty(ref _listPanier, value); } }
 
-        public event PropertyChangedEventHandler PropertyChanged;
         public int GetCount { get; set; }
         public double GetPrice { get; set; }
         public Command RemoveAllItemsFromCart { get; private set; }
         public Command GoToPaiement { get; private set; }
         public Command RemoveFromCart { get; private set; }
-
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            if (PropertyChanged == null)
-                return;
-            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         public PanierViewModel()
         {

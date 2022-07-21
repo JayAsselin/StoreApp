@@ -14,7 +14,7 @@ using Xamarin.Forms;
 namespace StoreApp.ViewModels
 {
     [QueryProperty(nameof(JsonList), "panier")]
-    internal class PaiementViewModel:INotifyPropertyChanged
+    internal class PaiementViewModel:BaseViewModel
     {
         string jsonList;
         public string JsonList
@@ -43,26 +43,26 @@ namespace StoreApp.ViewModels
             
         }
         List<SmartDevice> jsonDevices;
-        public List<SmartDevice> JsonDevices { get => jsonDevices; set { jsonDevices = value; OnPropertyChanged(); } }
+        public List<SmartDevice> JsonDevices { get => jsonDevices; set { SetProperty(ref jsonDevices, value); } }
 
         public double GetPrice { get; set; }
         public Command PaiementCanceled { get; }
         public Command PaiementConfirmed { get; }
         public Invoice invoiceInfo;
         public PersonInfo personInfo;
-        public List<string> Invoice = new List<string>();
+        //public List<string> Invoice = new List<string>();
         string nom;
         string prenom;
         string adresse;
         string telephone;
         string courriel;
         string carteCredit;
-        public string Nom { get => nom; set { nom = value; OnPropertyChanged(); } }
-        public string Prenom { get => prenom; set { prenom = value; OnPropertyChanged(); } }
-        public string Adresse { get => adresse; set { adresse = value; OnPropertyChanged(); } }
-        public string Telephone { get => telephone; set { telephone = value; OnPropertyChanged(); } }
-        public string Courriel { get => courriel; set { courriel = value; OnPropertyChanged(); } }
-        public string CarteCredit { get => carteCredit; set { carteCredit = value; OnPropertyChanged(); } }
+        public string Nom { get => nom; set { SetProperty(ref nom, value); } }
+        public string Prenom { get => prenom; set { SetProperty(ref prenom, value); } }
+        public string Adresse { get => adresse; set { SetProperty(ref adresse, value); } }
+        public string Telephone { get => telephone; set { SetProperty(ref telephone, value); } }
+        public string Courriel { get => courriel; set { SetProperty(ref courriel, value); } }
+        public string CarteCredit { get => carteCredit; set { SetProperty(ref carteCredit, value); } }
         public PaiementViewModel()
         {
             try
@@ -79,13 +79,6 @@ namespace StoreApp.ViewModels
             
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            if (PropertyChanged == null)
-                return;
-            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
         private async void ReturnToHomePage()
         {
             try
@@ -126,12 +119,14 @@ namespace StoreApp.ViewModels
                 };
                 string buyerInfo = JsonConvert.SerializeObject(personInfo, Formatting.Indented);
                 string listAchat = JsonConvert.SerializeObject(JsonList);
-                Invoice.Add(buyerInfo);
-                Invoice.Add(listAchat);
-                string newInvoice = JsonConvert.SerializeObject(Invoice);
+                //Invoice.Add(buyerInfo);
+                //Invoice.Add(listAchat);
+                //string newInvoice = JsonConvert.SerializeObject(Invoice);
                 invoiceInfo = new Invoice
                 {
-                    InvoiceContent = newInvoice
+                    BuyerInfo = buyerInfo,
+                    CartContent = listAchat,
+                    InvoiceTotal = GetPrice
                 };
                 await App.dbContext.InsertInvoiceAsync(invoiceInfo);
                 App.panier.ClearPanier();
