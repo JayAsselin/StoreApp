@@ -1,10 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:StoreApp.ViewModels" x:DataType="viewmodels:PaiementViewModel"
-             x:Class="StoreApp.Views.PaiementPage"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:StoreApp.ViewModels" 
              xmlns:model="clr-namespace:StoreApp.Models"
-             Shell.PresentationMode="ModalAnimated"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="StoreApp.Views.PaiementPage"
+             x:DataType="viewmodels:PaiementViewModel"
+             Shell.PresentationMode="ModalAnimated">
+    
     <ContentPage.Content>
         <StackLayout BackgroundColor="#333333">
             <Label Text="Page de paiement" FontSize="Title" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="Beige"/>
@@ -50,11 +53,10 @@
                     <Label Text="Telephone:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body" TextColor="Beige"/>
                     <Entry x:Name="telephone" HorizontalOptions="FillAndExpand" Keyboard="Telephone" Text="{Binding Telephone, Mode=TwoWay}">
                         <Entry.Behaviors>
-                            <xct:TextValidationBehavior Flags="ValidateOnUnfocusing" x:Name="phoneValidation" RegexPattern="^\(\d{3}\)\s\d{3}-\d{4}$"/>
+                            <xct:MaskedBehavior x:Name="phoneValidation" Mask="(XXX) XXX-XXXX"/>
                         </Entry.Behaviors>
                     </Entry>
                 </StackLayout>
-                <Label Text="Vous devez entrer un numero de telephone sous le format (555) 555-5555" TextColor="Red" IsVisible="{Binding IsNotValid, Source={x:Reference phoneValidation}}"/>
             </StackLayout>
 
             <StackLayout Orientation="Vertical">
@@ -75,11 +77,10 @@
                     <Label Text="Carte de credit:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body" TextColor="Beige"/>
                     <Entry x:Name="carteCredit" HorizontalOptions="FillAndExpand" Keyboard="Numeric" Text="{Binding CarteCredit, Mode=TwoWay}">
                         <Entry.Behaviors>
-                            <xct:TextValidationBehavior Flags="ValidateOnUnfocusing" x:Name="ccValidation" MinimumLength="10" MaximumLength="14"/>
+                            <xct:MaskedBehavior x:Name="ccValidation" Mask="XXXX-XXXX-XXXX-XXXX"/>
                         </Entry.Behaviors>
                     </Entry>
                 </StackLayout>
-                <Label Text="Vous devez entrer une carte de credit valide 10 a 14 chiffre" TextColor="Red" IsVisible="{Binding IsNotValid, Source={x:Reference ccValidation}}"/>
             </StackLayout>
 
             <Frame>

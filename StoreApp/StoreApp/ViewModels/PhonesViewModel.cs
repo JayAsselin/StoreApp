@@ -24,7 +24,7 @@ namespace StoreApp.ViewModels
             try
             {
                 this.Phones.Clear();
-                var items = await App.dbContext.GetByTypeAsync("Smart Phone");
+                var items = await App.dbContext.GetAllAsync(/*"Smart Phone"*/);
                 foreach (var item in items)
                 {
                     this.Phones.Add(item);

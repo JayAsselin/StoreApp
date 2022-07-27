@@ -23,7 +23,7 @@ namespace StoreApp.ViewModels
             try
             {
                 this.Tablets.Clear();
-                var items = await App.dbContext.GetByTypeAsync("Tablet");
+                var items = await App.dbContext.GetAllAsync(/*"Tablet"*/);
                 foreach (var item in items)
                 {
                     this.Tablets.Add(item);

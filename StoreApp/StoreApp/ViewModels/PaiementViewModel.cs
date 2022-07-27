@@ -49,7 +49,7 @@ namespace StoreApp.ViewModels
         public Command PaiementCanceled { get; }
         public Command PaiementConfirmed { get; }
         public Invoice invoiceInfo;
-        public PersonInfo personInfo;
+        public BuyerInfo personInfo;
         //public List<string> Invoice = new List<string>();
         string nom;
         string prenom;
@@ -108,7 +108,7 @@ namespace StoreApp.ViewModels
             try
             {
                 await Shell.Current.DisplayAlert("Merci", "Merci d'avoir fait affaire avec nous!", "Ok");
-                personInfo = new PersonInfo
+                personInfo = new BuyerInfo
                 {
                     LName = Nom,
                     FName = Prenom,

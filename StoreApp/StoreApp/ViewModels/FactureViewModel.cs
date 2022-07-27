@@ -12,7 +12,7 @@ namespace StoreApp.ViewModels
     {
         ObservableCollection<Invoice> invoices;
         public ObservableCollection<Invoice> Invoices { get; set; }
-        public ObservableCollection<PersonInfo> Persons { get; set; }
+        public ObservableCollection<BuyerInfo> Persons { get; set; }
         public ObservableCollection<SmartDevice> smartDevices { get; set; }
         public FactureViewModel()
         {
@@ -27,7 +27,7 @@ namespace StoreApp.ViewModels
                 var items = await App.dbContext.GetAllInvoicesAsync();
                 foreach (var item in items)
                 {
-                    var buyerInfo = JsonConvert.DeserializeObject<PersonInfo>(item.BuyerInfo);
+                    var buyerInfo = JsonConvert.DeserializeObject<BuyerInfo>(item.BuyerInfo);
                     var cartContent = JsonConvert.DeserializeObject<List<SmartDevice>>(item.CartContent);
                     var invoiceTotal = item.InvoiceTotal;
                     this.Invoices.Add(item);

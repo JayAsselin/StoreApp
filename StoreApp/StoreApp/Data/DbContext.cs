@@ -502,10 +502,10 @@ namespace StoreApp.Data
 
         }
 
-        public Task<List<SmartDevice>> GetByTypeAsync(string type)
+        public Task<List<SmartDevice>> GetAllAsync()
         {
             // Shows all database entries into a list
-            return database.Table<SmartDevice>().Where(t => t.Type == type).ToListAsync();
+            return database.Table<SmartDevice>().ToListAsync();
         }
 
         public Task<SmartDevice> GetItemByIdAsync(int id)

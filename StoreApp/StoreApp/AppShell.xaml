@@ -9,8 +9,10 @@
         <ShellContent Route="accueil" Title="Accueil" 
                       Icon="infoIcon.ico" 
                       ContentTemplate="{DataTemplate views:AccueilPage}"/>
-        
-        <Tab Route="magasin" Title="Magasiner" Icon="storeIcon.ico">
+
+        <ShellContent Route="magasin" Title="Magasiner" Icon="storeIcon.ico" ContentTemplate="{DataTemplate views:ItemsList}"/>
+
+        <!--<Tab Route="magasin" Title="Magasiner" Icon="storeIcon.ico">
             <ShellContent Route="phones" Title="Telephones" 
                           ContentTemplate="{DataTemplate views:PhonesPage}"/>
             
@@ -19,11 +21,12 @@
             
             <ShellContent Route="watches" Title="Montres intelligentes" 
                           ContentTemplate="{DataTemplate views:WatchesPage}"/>
-        </Tab>
+        </Tab>-->
 
         <ShellContent Route="panier" Title="Voir Panier" 
                       Icon="cartIcon.ico" 
                       ContentTemplate="{DataTemplate views:PanierPage}"/>
+            
         <ShellContent Route="facture" Title="Facture" Icon="invoiceIcon.ico" ContentTemplate="{DataTemplate views:FacturePage}"/>
     </TabBar>
 

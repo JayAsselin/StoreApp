@@ -5,7 +5,7 @@ using System.Text;
 
 namespace StoreApp.Models
 {
-    public class PersonInfo
+    public class BuyerInfo
     {
         private string lName;
         private string fName;

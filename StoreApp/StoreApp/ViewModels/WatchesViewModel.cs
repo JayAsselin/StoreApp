@@ -23,7 +23,7 @@ namespace StoreApp.ViewModels
             try
             {
                 this.Watches.Clear();
-                var items = await App.dbContext.GetByTypeAsync("Smart Watch");
+                var items = await App.dbContext.GetAllAsync(/*"Smart Watch"*/);
                 foreach (var item in items)
                 {
                     this.Watches.Add(item);
