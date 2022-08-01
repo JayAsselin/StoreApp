@@ -15,6 +15,7 @@ namespace StoreApp
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(PaiementPage), typeof(PaiementPage));
+            Routing.RegisterRoute(nameof(PaymentPopup), typeof(PaymentPopup));
         }
     }
 }

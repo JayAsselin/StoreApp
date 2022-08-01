@@ -41,7 +41,7 @@
                     <Label Text="Adresse:" VerticalTextAlignment="End" FontAttributes="Bold" FontSize="Body" TextColor="Beige"/>
                     <Entry x:Name="adresse" HorizontalOptions="FillAndExpand" Keyboard="Text" Text="{Binding Adresse, Mode=TwoWay}">
                         <Entry.Behaviors>
-                            <xct:TextValidationBehavior Flags="ValidateOnUnfocusing" x:Name="adressValidation" RegexPattern="^\d{1,}\s\w+\s\w+$"/>
+                            <xct:TextValidationBehavior Flags="ValidateOnUnfocusing" x:Name="adressValidation" RegexPattern="^\d{1,}\s\w+\s?\w+$"/>
                         </Entry.Behaviors>
                     </Entry>
                 </StackLayout>
@@ -90,7 +90,7 @@
                             <StackLayout
                              Orientation="Horizontal"
                              HorizontalOptions="CenterAndExpand" x:DataType="model:SmartDevice">
-                                <Image Source="{Binding Image}"
+                                <Image Source="{Binding Photo}"
                            Aspect="AspectFit"
                            HeightRequest="100"
                            WidthRequest="150"/>

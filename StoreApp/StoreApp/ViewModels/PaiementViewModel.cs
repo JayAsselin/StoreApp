@@ -7,8 +7,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
+using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Forms;
 
 namespace StoreApp.ViewModels
@@ -49,8 +51,6 @@ namespace StoreApp.ViewModels
         public Command PaiementCanceled { get; }
         public Command PaiementConfirmed { get; }
         public Invoice invoiceInfo;
-        public BuyerInfo personInfo;
-        //public List<string> Invoice = new List<string>();
         string nom;
         string prenom;
         string adresse;
@@ -99,7 +99,7 @@ namespace StoreApp.ViewModels
         private bool ValidateFields()
         {
             return !string.IsNullOrWhiteSpace(Nom) && !string.IsNullOrWhiteSpace(Prenom) 
-                && !string.IsNullOrWhiteSpace(Courriel) && !string.IsNullOrWhiteSpace(Adresse) 
+                && !string.IsNullOrWhiteSpace(Courriel) && Regex.IsMatch(Adresse, @"^\d{1,}\s\w+\s?\w+$") 
                 && !string.IsNullOrWhiteSpace(Telephone) && !string.IsNullOrWhiteSpace(CarteCredit);
         }
 
@@ -107,30 +107,25 @@ namespace StoreApp.ViewModels
         {
             try
             {
-                await Shell.Current.DisplayAlert("Merci", "Merci d'avoir fait affaire avec nous!", "Ok");
-                personInfo = new BuyerInfo
+                var result = await Shell.Current.ShowPopupAsync(new PaymentPopup());
+                //string listAchat = JsonConvert.SerializeObject(JsonList);
+
+                if ((bool)result)
                 {
-                    LName = Nom,
-                    FName = Prenom,
-                    Adress = Adresse,
-                    Phone = Telephone,
-                    Email = Courriel,
-                    CreditCard = CarteCredit
-                };
-                string buyerInfo = JsonConvert.SerializeObject(personInfo, Formatting.Indented);
-                string listAchat = JsonConvert.SerializeObject(JsonList);
-                //Invoice.Add(buyerInfo);
-                //Invoice.Add(listAchat);
-                //string newInvoice = JsonConvert.SerializeObject(Invoice);
-                invoiceInfo = new Invoice
-                {
-                    BuyerInfo = buyerInfo,
-                    CartContent = listAchat,
-                    InvoiceTotal = GetPrice
-                };
-                await App.dbContext.InsertInvoiceAsync(invoiceInfo);
-                App.panier.ClearPanier();
-                await Shell.Current.GoToAsync("..");
+                    invoiceInfo = new Invoice
+                    {
+                        Nom = Nom,
+                        Prenom = Prenom,
+                        Adresse = Adresse,
+                        Telephone = Telephone,
+                        Courriel = Courriel,
+                        NumCarte = CarteCredit,
+                        InvoiceTotal = GetPrice
+                    };
+                    await App.dataProvider.AddInvoiceAsync(invoiceInfo);
+                    App.panier.ClearPanier();
+                    await Shell.Current.GoToAsync("..");
+                }
             }
             catch (Exception ex)
             {

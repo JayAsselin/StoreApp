@@ -145,4 +145,28 @@
       <Name>StoreApp</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cartIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\collapseIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\eShopLogo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\expandIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\infoIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\invoiceIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\storeIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\paymentSuccess.png" />
+  </ItemGroup>
 </Project>

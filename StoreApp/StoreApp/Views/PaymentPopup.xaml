@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xct:Popup xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="StoreApp.Views.PaymentPopup"
+             Size="300,300"
+             IsLightDismissEnabled="False"
+             Color="#333333">
+
+    <StackLayout>
+        <Image Source="paymentSuccess.png" Aspect="AspectFit" HeightRequest="150" WidthRequest="150" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <Label Text="Paiement effectuer avec succes!" FontSize="Body" TextColor="Beige" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <Button Text="Ok" Clicked="Button_Clicked" TextColor="Black" BackgroundColor="LightGreen" CornerRadius="3"/>
+        </StackLayout>
+    </StackLayout>
+
+</xct:Popup>

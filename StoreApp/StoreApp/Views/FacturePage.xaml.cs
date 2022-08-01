@@ -24,7 +24,7 @@ namespace StoreApp.Views
             base.OnAppearing();
             this.BindingContext = null;
             this.BindingContext = viewModel;
-            viewModel.RefreshList();
+            //viewModel.RefreshList();
         }
     }
 }

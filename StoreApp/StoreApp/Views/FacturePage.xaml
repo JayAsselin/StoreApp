@@ -15,15 +15,15 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
-                                <Label x:DataType="model:BuyerInfo" Text="{Binding LName}" TextColor="Black"/>
-                                <Label x:DataType="model:BuyerInfo" Text="{Binding FName}" TextColor="Black"/>
-                                <Label x:DataType="model:BuyerInfo" Text="{Binding Adress}" TextColor="Black"/>
-                                <Label x:DataType="model:BuyerInfo" Text="{Binding Phone}" TextColor="Black"/>
-                                <Label x:DataType="model:BuyerInfo" Text="{Binding Email}" TextColor="Black"/>
+                                <Label Text="{Binding LName}" TextColor="Black"/>
+                                <Label Text="{Binding FName}" TextColor="Black"/>
+                                <Label Text="{Binding Adress}" TextColor="Black"/>
+                                <Label Text="{Binding Phone}" TextColor="Black"/>
+                                <Label Text="{Binding Email}" TextColor="Black"/>
                                 <StackLayout x:DataType="model:SmartDevice" 
                              Orientation="Horizontal"
                              HorizontalOptions="CenterAndExpand" Padding="-30,0,0,0">
-                                    <Image Source="{Binding Image}" Aspect="AspectFit"
+                                    <Image Source="{Binding Photo}" Aspect="AspectFit"
                            HeightRequest="125" WidthRequest="125"/>
                                     <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
                                         <Label Text="{Binding Modele}" FontAttributes="Bold" TextColor="Black"/>

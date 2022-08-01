@@ -21,9 +21,7 @@
                     <sfbadge:BadgeSetting BadgeType="None" BackgroundColor="Red"/>
                 </sfbadge:SfBadgeView.BadgeSettings>
             </sfbadge:SfBadgeView>
-            <Label Text="{Binding GetPrice, StringFormat='Montant de la facture: {0}$'}" 
-                   FontAttributes="Bold"
-                   HorizontalOptions="EndAndExpand" TextColor="Black"/>
+           
             <CollectionView ItemsSource="{Binding ListPanier}">
                 <CollectionView.EmptyView>
                     <Label Text="Le panier est vide" FontSize="Large" TextColor="Red" 
@@ -37,10 +35,10 @@
                                 <StackLayout Padding="-30,10,0,10" x:DataType="model:SmartDevice" 
                              Orientation="Horizontal"
                              HorizontalOptions="CenterAndExpand" Spacing="-5">
-                                    <Image Source="{Binding Image}"
+                                    <Image Source="{Binding Photo}"
                            Aspect="AspectFit"
                            HeightRequest="100"
-                           WidthRequest="150"/>
+                           WidthRequest="150" Margin="-20,0,20,0"/>
                                     <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
                                         <Label Text="{Binding Modele}" FontAttributes="Bold" TextColor="Black"/>
                                         <Label Text="{Binding Fabriquant}" TextColor="Black"/>
@@ -61,6 +59,11 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            <Frame HorizontalOptions="Fill" BackgroundColor="LightGreen">
+                <Label Text="{Binding GetPrice, StringFormat='Montant de la facture: {0}$'}" 
+                   FontAttributes="Bold"
+                   HorizontalOptions="FillAndExpand" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center"/>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

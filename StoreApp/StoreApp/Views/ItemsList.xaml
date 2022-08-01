@@ -23,9 +23,12 @@
 
         <ScrollView>
             <StackLayout>
-                
+
                 <!--Smart Phones expander-->
-                <xct:Expander>
+                <xct:Expander ExpandAnimationEasing="CubicIn"
+                                  ExpandAnimationLength="500"
+                                  CollapseAnimationEasing="CubicOut"
+                                  CollapseAnimationLength="500">
                     <xct:Expander.Header>
                         <Grid>
                             <Label Text="Telephones Intelligents" FontAttributes="Bold" FontSize="Large" TextColor="Black"/>
@@ -35,7 +38,7 @@
                                                 Binding="{Binding Source={RelativeSource AncestorType={x:Type xct:Expander}}, Path=IsExpanded}"
                                                 Value="True">
                                         <Setter Property="Source"
-                                                        Value="collapseIcon.ico" />
+                                                Value="collapseIcon.ico" />
                                     </DataTrigger>
                                 </Image.Triggers>
                             </Image>
@@ -43,7 +46,7 @@
                     </xct:Expander.Header>
                     <xct:Expander.ContentTemplate>
                         <DataTemplate>
-                            <Grid ColumnDefinitions="auto" RowDefinitions="auto">
+                            <Grid>
                                 <StackLayout Padding="15" BindableLayout.ItemsSource="{Binding Phones}">
                                     <BindableLayout.ItemTemplate>
                                         <DataTemplate>
@@ -51,7 +54,7 @@
                                                 <StackLayout Padding="-30,10,0,10" x:DataType="model:SmartDevice" 
                                                              Orientation="Horizontal"
                                                              HorizontalOptions="CenterAndExpand" Spacing="-5">
-                                                    <Image Source="{Binding Image}" Aspect="AspectFit" HeightRequest="100" WidthRequest="150"/>
+                                                    <Image Source="{Binding Photo}" Aspect="AspectFit" HeightRequest="100" WidthRequest="150"/>
                                                     <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
                                                         <Label Text="{Binding Modele}" FontAttributes="Bold" TextColor="Black"/>
                                                         <Label Text="{Binding Fabriquant}" TextColor="Black"/>
@@ -77,7 +80,10 @@
                 </xct:Expander>
 
                 <!--Tablets expander-->
-                <xct:Expander>
+                <xct:Expander ExpandAnimationEasing="CubicIn"
+                                  ExpandAnimationLength="500"
+                                  CollapseAnimationEasing="CubicOut"
+                                  CollapseAnimationLength="500">
                     <xct:Expander.Header>
                         <Grid>
                             <Label Text="Tablettes" FontAttributes="Bold" FontSize="Large" TextColor="Black"/>
@@ -95,7 +101,7 @@
                     </xct:Expander.Header>
                     <xct:Expander.ContentTemplate>
                         <DataTemplate>
-                            <Grid ColumnDefinitions="auto" RowDefinitions="auto">
+                            <Grid>
                                 <StackLayout Padding="15" BindableLayout.ItemsSource="{Binding Tablets}">
                                     <BindableLayout.ItemTemplate>
                                         <DataTemplate>
@@ -103,7 +109,7 @@
                                                 <StackLayout Padding="-30,10,0,10" x:DataType="model:SmartDevice" 
                                                              Orientation="Horizontal"
                                                              HorizontalOptions="CenterAndExpand" Spacing="-5">
-                                                    <Image Source="{Binding Image}" Aspect="AspectFit" HeightRequest="100" WidthRequest="150"/>
+                                                    <Image Source="{Binding Photo}" Aspect="AspectFit" HeightRequest="100" WidthRequest="150" Margin="-20,0,20,0"/>
                                                     <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
                                                         <Label Text="{Binding Modele}" FontAttributes="Bold" TextColor="Black"/>
                                                         <Label Text="{Binding Fabriquant}" TextColor="Black"/>
@@ -129,7 +135,10 @@
                 </xct:Expander>
 
                 <!--Smart Watches expander-->
-                <xct:Expander>
+                <xct:Expander ExpandAnimationEasing="CubicIn"
+                                  ExpandAnimationLength="500"
+                                  CollapseAnimationEasing="CubicOut"
+                                  CollapseAnimationLength="500">
                     <xct:Expander.Header>
                         <Grid>
                             <Label Text="Montres Intelligentes" FontAttributes="Bold" FontSize="Large" TextColor="Black"/>
@@ -147,7 +156,7 @@
                     </xct:Expander.Header>
                     <xct:Expander.ContentTemplate>
                         <DataTemplate>
-                            <Grid ColumnDefinitions="auto" RowDefinitions="auto">
+                            <Grid>
                                 <StackLayout Padding="15" BindableLayout.ItemsSource="{Binding Watches}">
                                     <BindableLayout.ItemTemplate>
                                         <DataTemplate>
@@ -155,7 +164,7 @@
                                                 <StackLayout Padding="-30,10,0,10" x:DataType="model:SmartDevice" 
                                                              Orientation="Horizontal"
                                                              HorizontalOptions="CenterAndExpand" Spacing="-5">
-                                                    <Image Source="{Binding Image}" Aspect="AspectFit" HeightRequest="100" WidthRequest="150"/>
+                                                    <Image Source="{Binding Photo}" Aspect="AspectFit" HeightRequest="100" WidthRequest="150"/>
                                                     <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
                                                         <Label Text="{Binding Modele}" FontAttributes="Bold" TextColor="Black"/>
                                                         <Label Text="{Binding Fabriquant}" TextColor="Black"/>

@@ -63,6 +63,9 @@
     <PackageReference Include="Syncfusion.Xamarin.SfBadgeView">
       <Version>20.2.0.36</Version>
     </PackageReference>
+    <PackageReference Include="System.Net.Http">
+      <Version>4.3.4</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.CommunityToolkit">
       <Version>2.0.2</Version>
     </PackageReference>
@@ -114,15 +117,6 @@
     <AndroidResource Include="Resources\drawable\cartIcon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\watchImage.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\tabletImage.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\phoneImage.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\invoiceIcon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -131,5 +125,16 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\expandIcon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\xml\network_security_config.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\paymentSuccess.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties XamarinHotReloadDebuggerTimeoutExceptionStoreAppAndroidHideInfoBar="True" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

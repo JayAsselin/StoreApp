@@ -41,10 +41,10 @@ namespace StoreApp.ViewModels
             try
             {
                 this.Phones.Clear();
-                var items = await App.dbContext.GetAllAsync();
+                var items = await App.dataProvider.GetAllDevicesAsync();
                 foreach (var item in items)
                 {
-                    if(item.Type == "Smart Phone")
+                    if (item.Type == "Smart phone")
                         this.Phones.Add(item);
                 }
             }
@@ -59,7 +59,7 @@ namespace StoreApp.ViewModels
             try
             {
                 this.Tablets.Clear();
-                var items = await App.dbContext.GetAllAsync();
+                var items = await App.dataProvider.GetAllDevicesAsync();
                 foreach (var item in items)
                 {
                     if (item.Type == "Tablet")
@@ -77,10 +77,10 @@ namespace StoreApp.ViewModels
             try
             {
                 this.Watches.Clear();
-                var items = await App.dbContext.GetAllAsync();
+                var items = await App.dataProvider.GetAllDevicesAsync();
                 foreach (var item in items)
                 {
-                    if (item.Type == "Smart Watch")
+                    if (item.Type == "Smart watch")
                         this.Watches.Add(item);
                 }
             }

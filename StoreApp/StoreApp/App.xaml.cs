@@ -8,7 +8,8 @@ namespace StoreApp
     public partial class App : Application
     {
         public static Panier panier;
-        public static DbContext dbContext;
+        //public static DbContext dbContext;
+        public static DataProviderService dataProvider;
         public App()
         {
             // License key for syncfusion badge package
@@ -17,7 +18,8 @@ namespace StoreApp
             InitializeComponent();
             panier = new Panier();
             MainPage = new AppShell();
-            dbContext = new DbContext("StoreApp.db3");
+            dataProvider = new DataProviderService();
+            //dbContext = new DbContext("StoreApp.db3");
             
         }
 
