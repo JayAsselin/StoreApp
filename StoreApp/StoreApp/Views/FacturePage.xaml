@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:model="clr-namespace:StoreApp.Models"
+             xmlns:vm="clr-namespace:StoreApp.ViewModels"
              x:Class="StoreApp.Views.FacturePage"
              Title="Liste des factures">
     <ContentPage.Content>
@@ -14,24 +14,16 @@
                     </CollectionView.EmptyView>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout>
-                                <Label Text="{Binding LName}" TextColor="Black"/>
-                                <Label Text="{Binding FName}" TextColor="Black"/>
-                                <Label Text="{Binding Adress}" TextColor="Black"/>
-                                <Label Text="{Binding Phone}" TextColor="Black"/>
-                                <Label Text="{Binding Email}" TextColor="Black"/>
-                                <StackLayout x:DataType="model:SmartDevice" 
-                             Orientation="Horizontal"
-                             HorizontalOptions="CenterAndExpand" Padding="-30,0,0,0">
-                                    <Image Source="{Binding Photo}" Aspect="AspectFit"
-                           HeightRequest="125" WidthRequest="125"/>
-                                    <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
-                                        <Label Text="{Binding Modele}" FontAttributes="Bold" TextColor="Black"/>
-                                        <Label Text="{Binding Fabriquant}" TextColor="Black"/>
-                                        <Label Text="{Binding Type}" FontAttributes="Italic" TextColor="Black"/>
-                                        <Label Text="{Binding Prix, StringFormat='Prix: {0}$'}" TextColor="Red"/>
-                                    </StackLayout>
-                                </StackLayout>
+                            <StackLayout Margin="20">
+                                <Label Text="{Binding Id, StringFormat='Facture no.{0}'}" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Large"/>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                                    NumberOfTapsRequired="2"
+                                                    Command="{Binding Source={RelativeSource 
+                                                    AncestorType={x:Type vm:FactureViewModel}}, Path=ViewInvoiceCommand}"		
+                                                    CommandParameter="{Binding .}">
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
                             </StackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

@@ -56,33 +56,32 @@ namespace StoreApp.Data
 
             return Items;
         }
+        
+        public async Task<List<Invoice>> GetAllInvoicesAsync()
+        {
+            List<Invoice> Items = new List<Invoice>();
 
-        //public async Task<User> GetUserByIdAsync(int id)
-        //{
-        //    User user = new User();
+            try
+            {
+                Uri uri = new Uri($"{BaseAddress}/api/Factures");
+                
+                HttpResponseMessage response = await this.httpClient.GetAsync(uri);
 
-        //    try
-        //    {
-        //        //construire l'uri de la ressource
-        //        Uri uri = new Uri($"{BaseAddress}/users/{id}");
-        //        //Lancer la requete http a l'api web
-        //        HttpResponseMessage response = await this.httpClient.GetAsync(uri);
-        //        //string jsonrep=await this.httpClient.GetStringAsync(uri);
-        //        if (response.IsSuccessStatusCode)
-        //        {
-        //            string content = await response.Content.ReadAsStringAsync();
-        //            user = JsonSerializer.Deserialize<User>(content, serializerOptions);
-        //        }
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    Items = JsonSerializer.Deserialize<List<Invoice>>(content, serializerOptions);
+                }
 
 
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.WriteLine(@"\tERROR {0}", ex.Message);
-        //    }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
 
-        //    return user;
-        //}
+            return Items;
+        }
 
         public async Task<Invoice> AddInvoiceAsync(Invoice item)
         {
@@ -107,6 +106,32 @@ namespace StoreApp.Data
                 Debug.WriteLine(@"\tERROR {0}", ex.Message);
             }
             return null;
+        }
+
+        public async Task<Invoice> GetInvoiceByIdAsync(int id)
+        {
+            Invoice invoice = new Invoice();
+
+            try
+            {
+                Uri uri = new Uri($"{BaseAddress}/api/Factures/{id}");
+                
+                HttpResponseMessage response = await this.httpClient.GetAsync(uri);
+                
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    invoice = JsonSerializer.Deserialize<Invoice>(content, serializerOptions);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
+
+            return invoice;
         }
     }
 }
