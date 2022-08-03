@@ -1,11 +1,11 @@
-﻿using StoreApp.Models;
+﻿using Newtonsoft.Json;
+using StoreApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
@@ -16,19 +16,12 @@ namespace StoreApp.Data
         private static string BaseAddress = 
             DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:8085" : "http://127.0.0.1:8085";
         private HttpClient httpClient;
-        private JsonSerializerOptions serializerOptions;
 
         public DataProviderService()
         {
             this.httpClient = new HttpClient();
             this.httpClient.BaseAddress = new Uri(DataProviderService.BaseAddress);
             this.httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            this.serializerOptions = new JsonSerializerOptions
-            {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                WriteIndented = true
-            };
-
         }
 
         public async Task<List<SmartDevice>> GetAllDevicesAsync()
@@ -44,7 +37,7 @@ namespace StoreApp.Data
                 if (response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync();
-                    Items = JsonSerializer.Deserialize<List<SmartDevice>>(content, serializerOptions);
+                    Items = JsonConvert.DeserializeObject<List<SmartDevice>>(content);
                 }
 
 
@@ -70,7 +63,7 @@ namespace StoreApp.Data
                 if (response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync();
-                    Items = JsonSerializer.Deserialize<List<Invoice>>(content, serializerOptions);
+                    Items = JsonConvert.DeserializeObject<List<Invoice>>(content);
                 }
 
 
@@ -89,14 +82,14 @@ namespace StoreApp.Data
 
             try
             {
-                string json = JsonSerializer.Serialize<Invoice>(item, serializerOptions);
+                string json = JsonConvert.SerializeObject(item);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await this.httpClient.PostAsync(uri, content);
 
                 if (response.IsSuccessStatusCode)
                 {
                     string repcontent = await response.Content.ReadAsStringAsync();
-                    Invoice invoice = JsonSerializer.Deserialize<Invoice>(repcontent, serializerOptions);
+                    Invoice invoice = JsonConvert.DeserializeObject<Invoice>(repcontent);
                     return invoice;
                 }
 
@@ -121,7 +114,7 @@ namespace StoreApp.Data
                 if (response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync();
-                    invoice = JsonSerializer.Deserialize<Invoice>(content, serializerOptions);
+                    invoice = JsonConvert.DeserializeObject<Invoice>(content);
                 }
 
 

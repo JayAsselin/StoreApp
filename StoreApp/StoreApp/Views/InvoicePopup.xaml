@@ -14,7 +14,7 @@
         <Label Text="{Binding Adresse, StringFormat='Adresse: {0}'}" FontSize="Body" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="LightCyan"/>
         <Label Text="{Binding Telephone, StringFormat='Telephone: {0}'}" FontSize="Body" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="LightCyan"/>
         <Label Text="{Binding Courriel, StringFormat='Courriel: {0}'}" FontSize="Body" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="LightCyan"/>
-        <Label Text="{Binding InvoiceTotal, StringFormat='{0}$'}" FontSize="Body" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="LightCyan"/>
+        <Label Text="{Binding Montant, StringFormat='{0}$'}" FontSize="Body" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="LightCyan"/>
         <Button Text="Revenir a la liste de facture" BackgroundColor="LightBlue" Clicked="Button_Clicked" HorizontalOptions="CenterAndExpand" TextColor="Black" CornerRadius="5"/>
     </StackLayout>
 </xct:Popup>

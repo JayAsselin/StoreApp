@@ -15,6 +15,6 @@ namespace StoreApp.Models
         public string Courriel { get; set; }
         public string NumCarte { get; set; }
         //public string CartContent { get; set; }
-        public double InvoiceTotal { get; set; }
+        public double Montant { get; set; }
     }
 }

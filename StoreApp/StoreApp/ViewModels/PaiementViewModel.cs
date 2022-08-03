@@ -99,7 +99,7 @@ namespace StoreApp.ViewModels
         private bool ValidateFields()
         {
             return !string.IsNullOrWhiteSpace(Nom) && !string.IsNullOrWhiteSpace(Prenom) 
-                && !string.IsNullOrWhiteSpace(Courriel) && Regex.IsMatch(Adresse, @"^\d{1,}\s\w+\s?\w+$") 
+                && !string.IsNullOrWhiteSpace(Courriel) && Regex.IsMatch(Adresse, @"^\d{1,}\s\w+\s?\-?\w+$") 
                 && !string.IsNullOrWhiteSpace(Telephone) && !string.IsNullOrWhiteSpace(CarteCredit);
         }
 
@@ -120,7 +120,7 @@ namespace StoreApp.ViewModels
                         Telephone = Telephone,
                         Courriel = Courriel,
                         NumCarte = CarteCredit,
-                        InvoiceTotal = GetPrice
+                        Montant = GetPrice
                     };
                     await App.dataProvider.AddInvoiceAsync(invoiceInfo);
                     App.panier.ClearPanier();
