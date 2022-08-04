@@ -7,7 +7,9 @@
              x:Class="StoreApp.Views.PaiementPage"
              x:DataType="viewmodels:PaiementViewModel"
              Shell.PresentationMode="ModalAnimated">
-    
+
+    <!--Jerome Asselin 2195077-->
+
     <ContentPage.Content>
         <StackLayout BackgroundColor="#333333">
             <Label Text="Page de paiement" FontSize="Title" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="Beige"/>

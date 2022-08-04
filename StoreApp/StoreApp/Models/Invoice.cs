@@ -5,6 +5,7 @@ using System.Text;
 
 namespace StoreApp.Models
 {
+    //Jerome Asselin 2195077
     public class Invoice
     {
         public int Id { get; set; }
@@ -14,7 +15,7 @@ namespace StoreApp.Models
         public string Telephone { get; set; }
         public string Courriel { get; set; }
         public string NumCarte { get; set; }
-        //public string CartContent { get; set; }
         public double Montant { get; set; }
+        public string CartList { get; set; }
     }
 }

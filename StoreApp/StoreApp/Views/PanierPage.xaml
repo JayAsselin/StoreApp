@@ -7,6 +7,8 @@
              xmlns:sfbadge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
              Title="Panier">
 
+    <!--Jerome Asselin 2195077-->
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Paiement" Command="{Binding GoToPaiement}"/>
         <ToolbarItem Text="Vider Panier" Command="{Binding RemoveAllItemsFromCart}"/>

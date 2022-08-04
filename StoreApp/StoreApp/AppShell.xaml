@@ -5,23 +5,14 @@
              xmlns:views="clr-namespace:StoreApp.Views" 
              Style="{StaticResource BaseStyle}">
 
+    <!--Jerome Asselin 2195077-->
+    
     <TabBar>
         <ShellContent Route="accueil" Title="Accueil" 
                       Icon="infoIcon.ico" 
                       ContentTemplate="{DataTemplate views:AccueilPage}"/>
 
         <ShellContent Route="magasin" Title="Magasiner" Icon="storeIcon.ico" ContentTemplate="{DataTemplate views:ItemsList}"/>
-
-        <!--<Tab Route="magasin" Title="Magasiner" Icon="storeIcon.ico">
-            <ShellContent Route="phones" Title="Telephones" 
-                          ContentTemplate="{DataTemplate views:PhonesPage}"/>
-            
-            <ShellContent Route="tablets" Title="Tablettes" 
-                          ContentTemplate="{DataTemplate views:TabletsPage}"/>
-            
-            <ShellContent Route="watches" Title="Montres intelligentes" 
-                          ContentTemplate="{DataTemplate views:WatchesPage}"/>
-        </Tab>-->
 
         <ShellContent Route="panier" Title="Voir Panier" 
                       Icon="cartIcon.ico" 

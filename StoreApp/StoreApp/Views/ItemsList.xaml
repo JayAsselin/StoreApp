@@ -8,6 +8,8 @@
              xmlns:vm="clr-namespace:StoreApp.ViewModels"
              Title="Liste des Produits">
 
+    <!--Jerome Asselin 2195077-->
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Vider Panier" Command="{Binding RemoveAllItemsFromCart}"/>
     </ContentPage.ToolbarItems>
@@ -66,7 +68,7 @@
                                                     NumberOfTapsRequired="2"
                                                     Command="{Binding Source={RelativeSource 
                                                     AncestorType={x:Type vm:ItemsListViewModel}}, Path=AddToCart}"		
-                                                    CommandParameter="{Binding .}">
+                                                    CommandParameter="{Binding Id}">
                                                         </TapGestureRecognizer>
                                                     </StackLayout.GestureRecognizers>
                                                 </StackLayout>
@@ -121,7 +123,7 @@
                                                     NumberOfTapsRequired="2"
                                                     Command="{Binding Source={RelativeSource 
                                                     AncestorType={x:Type vm:ItemsListViewModel}}, Path=AddToCart}"		
-                                                    CommandParameter="{Binding .}">
+                                                    CommandParameter="{Binding Id}">
                                                         </TapGestureRecognizer>
                                                     </StackLayout.GestureRecognizers>
                                                 </StackLayout>
@@ -176,7 +178,7 @@
                                                     NumberOfTapsRequired="2"
                                                     Command="{Binding Source={RelativeSource 
                                                     AncestorType={x:Type vm:ItemsListViewModel}}, Path=AddToCart}"		
-                                                    CommandParameter="{Binding .}">
+                                                    CommandParameter="{Binding Id}">
                                                         </TapGestureRecognizer>
                                                     </StackLayout.GestureRecognizers>
                                                 </StackLayout>

@@ -3,6 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StoreApp.Views.AccueilPage"
              Title="Accueil">
+
+    <!--Jerome Asselin 2195077-->
+
     <ContentPage.Content>
         <StackLayout>
             <Image Source="eShopLogo.jpg" Aspect="AspectFill"/>

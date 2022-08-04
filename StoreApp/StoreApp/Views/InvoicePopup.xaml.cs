@@ -1,4 +1,5 @@
-﻿using StoreApp.Models;
+﻿using Newtonsoft.Json;
+using StoreApp.Models;
 using StoreApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -15,26 +16,18 @@ namespace StoreApp.Views
     public partial class InvoicePopup : Popup
     {
         public Invoice invoice { get; set; }
+        public List<SmartDevice> ListItem { get; set; }
         public InvoicePopup(Invoice item)
         {
             InitializeComponent();
+            // Assigne l'objet invoice au parametre recu par le constructeur
             invoice = item;
-            this.BindingContext = invoice;
-            LoadInvoiceById(item.Id);
+            // Deserialise la liste des achats dans une liste a afficher sur la facture
+            this.ListItem = new List<SmartDevice>(JsonConvert.DeserializeObject<List<SmartDevice>>(invoice.CartList));
+            this.BindingContext = this;
         }
 
-        private async void LoadInvoiceById(int id)
-        {
-            try
-            {
-                var item = await App.dataProvider.GetInvoiceByIdAsync(id);
-            }
-            catch (Exception ex)
-            {
-                await Shell.Current.DisplayAlert("Erreur", ex.Message, "Ok");
-            }
-        }
-
+        // Event pour fermer le popup quand on click sur le bouton
         private void Button_Clicked(object sender, EventArgs e) => Dismiss(null);
     }
 }

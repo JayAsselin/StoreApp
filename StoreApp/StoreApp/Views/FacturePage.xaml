@@ -1,9 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:vm="clr-namespace:StoreApp.ViewModels"
+             xmlns:vm="clr-namespace:StoreApp.ViewModels" 
+             xmlns:models="clr-namespace:StoreApp.Models"
              x:Class="StoreApp.Views.FacturePage"
              Title="Liste des factures">
+
+    <!--Jerome Asselin 2195077-->
+
     <ContentPage.Content>
         <StackLayout>
             <Frame>
@@ -14,14 +18,14 @@
                     </CollectionView.EmptyView>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout Margin="20">
+                            <StackLayout Margin="20" x:DataType="models:Invoice">
                                 <Label Text="{Binding Id, StringFormat='Facture no.{0}'}" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Large"/>
                                 <StackLayout.GestureRecognizers>
                                     <TapGestureRecognizer 
                                                     NumberOfTapsRequired="2"
                                                     Command="{Binding Source={RelativeSource 
                                                     AncestorType={x:Type vm:FactureViewModel}}, Path=ViewInvoiceCommand}"		
-                                                    CommandParameter="{Binding .}">
+                                                    CommandParameter="{Binding Id}">
                                     </TapGestureRecognizer>
                                 </StackLayout.GestureRecognizers>
                             </StackLayout>

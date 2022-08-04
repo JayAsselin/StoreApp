@@ -15,10 +15,15 @@ using Xamarin.Forms;
 
 namespace StoreApp.ViewModels
 {
+    //Jerome Asselin 2195077
+
     [QueryProperty(nameof(JsonList), "panier")]
     internal class PaiementViewModel:BaseViewModel
     {
         string jsonList;
+        /// <summary>
+        /// Recois la liste des smart device en format Json
+        /// </summary>
         public string JsonList
         {
             get => jsonList;
@@ -30,6 +35,10 @@ namespace StoreApp.ViewModels
             }
         }
 
+        /// <summary>
+        /// Deserialise la liste de smart device et popule la liste accessible par la Vue
+        /// </summary>
+        /// <param name="list"></param>
         public void GetJson(string list)
         {
             try
@@ -67,6 +76,7 @@ namespace StoreApp.ViewModels
         {
             try
             {
+                // Instancie la liste et les commandes
                 this.PaiementCanceled = new Command(ReturnToHomePage);
                 this.PaiementConfirmed = new Command(ReturnToCart, ValidateFields);
                 PropertyChanged += (_, __) => PaiementConfirmed.ChangeCanExecute();
@@ -79,6 +89,9 @@ namespace StoreApp.ViewModels
             
         }
 
+        /// <summary>
+        /// Renvoie a la page d'Accueil si le bouton annuler est clicker
+        /// </summary>
         private async void ReturnToHomePage()
         {
             try
@@ -96,6 +109,10 @@ namespace StoreApp.ViewModels
                 
         }
 
+        /// <summary>
+        /// Valide que les champs ne sont pas vide ainsi qu'un entrer specifique pour l'Adresse
+        /// </summary>
+        /// <returns></returns>
         private bool ValidateFields()
         {
             return !string.IsNullOrWhiteSpace(Nom) && !string.IsNullOrWhiteSpace(Prenom) 
@@ -103,12 +120,15 @@ namespace StoreApp.ViewModels
                 && !string.IsNullOrWhiteSpace(Telephone) && !string.IsNullOrWhiteSpace(CarteCredit);
         }
 
+        /// <summary>
+        /// Affiche un popup pour dire que le paiement est bon et creer un objet Invoice qui est envoyer au DataProvider qui l'envoie a l'API qui l'insere a la base de donnee
+        /// </summary>
         private async void ReturnToCart()
         {
             try
             {
                 var result = await Shell.Current.ShowPopupAsync(new PaymentPopup());
-                //string listAchat = JsonConvert.SerializeObject(JsonList);
+                string listAchat = JsonConvert.SerializeObject(JsonDevices);
 
                 if ((bool)result)
                 {
@@ -120,7 +140,8 @@ namespace StoreApp.ViewModels
                         Telephone = Telephone,
                         Courriel = Courriel,
                         NumCarte = CarteCredit,
-                        Montant = GetPrice
+                        Montant = GetPrice,
+                        CartList = listAchat
                     };
                     await App.dataProvider.AddInvoiceAsync(invoiceInfo);
                     App.panier.ClearPanier();

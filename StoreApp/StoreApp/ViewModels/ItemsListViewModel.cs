@@ -8,6 +8,7 @@ using Xamarin.Forms;
 
 namespace StoreApp.ViewModels
 {
+    //Jerome Asselin 2195077
     public class ItemsListViewModel : BaseViewModel
     {
         public ObservableCollection<SmartDevice> Phones { get; set; }
@@ -23,11 +24,14 @@ namespace StoreApp.ViewModels
         {
             try
             {
+                // Instanciation des listes et commandes
                 this.Phones = new ObservableCollection<SmartDevice>();
                 this.Tablets = new ObservableCollection<SmartDevice>();
                 this.Watches = new ObservableCollection<SmartDevice>();
-                this.AddToCart = new Command<SmartDevice>(OnTapped);
+                this.AddToCart = new Command<object>(OnTapped);
                 this.RemoveAllItemsFromCart = new Command(EmptyCart);
+
+                // Indique au expander qu'il est fermer par defaut
                 this.IsExpanded = false;
             }
             catch (Exception ex)
@@ -36,6 +40,9 @@ namespace StoreApp.ViewModels
             }
         }
 
+        /// <summary>
+        /// Popule la liste en appelant le dataProvider qui appele lui meme l'api en specifiant le type
+        /// </summary>
         private async void GetPhonesList()
         {
             try
@@ -54,6 +61,9 @@ namespace StoreApp.ViewModels
             }
         }
 
+        /// <summary>
+        /// Popule la liste en appelant le dataProvider qui appele lui meme l'api en specifiant le type
+        /// </summary>
         private async void GetTabletsList()
         {
             try
@@ -72,6 +82,9 @@ namespace StoreApp.ViewModels
             }
         }
 
+        /// <summary>
+        /// Popule la liste en appelant le dataProvider qui appele lui meme l'api en specifiant le type
+        /// </summary>
         private async void GetWatchesList()
         {
             try
@@ -90,6 +103,9 @@ namespace StoreApp.ViewModels
             }
         }
 
+        /// <summary>
+        /// Rafraichit les listes dans la vue ainsi que la quantite d'item au panier
+        /// </summary>
         public void RefreshList()
         {
             try
@@ -106,23 +122,34 @@ namespace StoreApp.ViewModels
             }
 
         }
-        private void OnTapped(SmartDevice item)
+
+        /// <summary>
+        /// Envoi le smart device par sont Id au panier
+        /// </summary>
+        /// <param name="item"></param>
+        private async void OnTapped(object item)
         {
             try
             {
                 if (item == null)
                     return;
 
-                App.panier.AddProduct(item);
+                SmartDevice device = new SmartDevice();
+                device = await App.dataProvider.GetDeviceByIdAsync((int)item);
+                App.panier.AddProduct(device);
                 GetCount = App.panier.CountPanier();
                 OnPropertyChanged(nameof(GetCount));
             }
             catch (Exception ex)
             {
-                Shell.Current.DisplayAlert("Erreur", ex.Message, "Ok");
+                await Shell.Current.DisplayAlert("Erreur", ex.Message, "Ok");
             }
 
         }
+
+        /// <summary>
+        /// Vide le panier si il contient des items sinon affiche un message
+        /// </summary>
         public async void EmptyCart()
         {
             try

@@ -3,18 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="StoreApp.Views.InvoicePopup"
-             Size="300, 300"
+             Size="300, 450"
              IsLightDismissEnabled="False"
              Color="Transparent">
+    
+    <!--Jerome Asselin 2195077-->
 
-    <StackLayout>
+    <StackLayout BackgroundColor="#333333" xct:CornerRadiusEffect.CornerRadius="10">
         <Label Text="Information sur la facture" FontSize="Body" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="20" TextColor="LightCyan"/>
         <Label Text="{Binding Nom, StringFormat='Nom: {0}'}" FontSize="Body" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="LightCyan"/>
-        <Label Text="{Binding Prenom, StringFormat='Prenom: {0}'}" FontSize="Body" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="LightCyan"/>
-        <Label Text="{Binding Adresse, StringFormat='Adresse: {0}'}" FontSize="Body" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="LightCyan"/>
-        <Label Text="{Binding Telephone, StringFormat='Telephone: {0}'}" FontSize="Body" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="LightCyan"/>
-        <Label Text="{Binding Courriel, StringFormat='Courriel: {0}'}" FontSize="Body" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="LightCyan"/>
-        <Label Text="{Binding Montant, StringFormat='{0}$'}" FontSize="Body" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="LightCyan"/>
-        <Button Text="Revenir a la liste de facture" BackgroundColor="LightBlue" Clicked="Button_Clicked" HorizontalOptions="CenterAndExpand" TextColor="Black" CornerRadius="5"/>
+        <Label Text="{Binding invoice.Prenom, StringFormat='Prenom: {0}'}" FontSize="Body" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="LightCyan"/>
+        <Label Text="{Binding invoice.Adresse, StringFormat='Adresse: {0}'}" FontSize="Body" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="LightCyan"/>
+        <Label Text="{Binding invoice.Telephone, StringFormat='Telephone: {0}'}" FontSize="Body" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="LightCyan"/>
+        <Label Text="{Binding invoice.Courriel, StringFormat='Courriel: {0}'}" FontSize="Body" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="LightCyan"/>
+        <Label Text="{Binding invoice.Montant, StringFormat='{0}$'}" FontSize="Body" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="LightCyan"/>
+        <CollectionView ItemsSource="{Binding ListItem}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BackgroundColor="#333333">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                            <Image Source="{Binding Photo}" Aspect="AspectFit" HeightRequest="50" WidthRequest="50"/>
+                            <StackLayout>
+                                <Label Text="{Binding Modele, StringFormat='Modele: {0}'}" FontSize="Body" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="LightCyan"/>
+                                <Label Text="{Binding Prix, StringFormat='Prix: {0}$'}" FontSize="Body" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="LightCyan"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Text="Revenir a la liste de facture" BackgroundColor="LightBlue" Clicked="Button_Clicked" HorizontalOptions="CenterAndExpand" TextColor="Black" CornerRadius="5" Margin="0,0,0,10"/>
     </StackLayout>
 </xct:Popup>

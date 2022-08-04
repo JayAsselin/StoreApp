@@ -5,6 +5,7 @@ using System.Text;
 
 namespace StoreApp.Models
 {
+    //Jerome Asselin 2195077
     public class SmartDevice
     {
         public int Id { get; set; }

@@ -14,6 +14,7 @@ using Xamarin.Forms;
 
 namespace StoreApp.ViewModels
 {
+    //Jerome Asselin 2195077
     internal class PanierViewModel:BaseViewModel
     {
         private ObservableCollection<SmartDevice> _listPanier;
@@ -29,6 +30,7 @@ namespace StoreApp.ViewModels
         {
             try
             {
+                // Instancie la liste et les commandes
                 ListPanier = new ObservableCollection<SmartDevice>();
                 this.RemoveAllItemsFromCart = new Command(EmptyCart);
                 this.GoToPaiement = new Command(PaiementPage);
@@ -44,6 +46,9 @@ namespace StoreApp.ViewModels
             
         }
 
+        /// <summary>
+        /// Ajoute les items a la liste pour les afficher et affiche le montant du panier et le nombre d'item
+        /// </summary>
         public void GetPanier()
         {
             try
@@ -66,10 +71,17 @@ namespace StoreApp.ViewModels
             
         }
 
+        /// <summary>
+        /// Rafraichit la liste
+        /// </summary>
         public void RefreshList()
         {
             GetPanier();
         }
+
+        /// <summary>
+        /// Vide le panier au complet si il n'est pas vide sinon affiche un message
+        /// </summary>
         public async void EmptyCart()
         {
             try
@@ -93,6 +105,11 @@ namespace StoreApp.ViewModels
             
 
         }
+
+        /// <summary>
+        /// Permet d'enlever juste un des items de la liste en clickant 2 fois dessus
+        /// </summary>
+        /// <param name="device"></param>
         public async void RemoveItem(object device)
         {
             try
@@ -110,6 +127,10 @@ namespace StoreApp.ViewModels
             }
 
         }
+
+        /// <summary>
+        /// Serialise la liste du panier et l'envoie as la page de Paiement et l'affiche
+        /// </summary>
         public async void PaiementPage()
         {
             try

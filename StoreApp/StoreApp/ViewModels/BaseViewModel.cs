@@ -6,6 +6,11 @@ using System.Text;
 
 namespace StoreApp.ViewModels
 {
+    //Jerome Asselin 2195077
+
+    /// <summary>
+    /// Classe de base qui implemente le INotifyPropertyChanged pour que les autres viewModels puisse heriter de elle
+    /// </summary>
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

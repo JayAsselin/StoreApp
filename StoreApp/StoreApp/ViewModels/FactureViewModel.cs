@@ -11,16 +11,22 @@ using Xamarin.Forms;
 
 namespace StoreApp.ViewModels
 {
+    //Jerome Asselin 2195077
     internal class FactureViewModel
     {
         public ObservableCollection<Invoice> Invoices { get; set; }
+        public ObservableCollection<SmartDevice> List { get; set; }
         public Command ViewInvoiceCommand { get; private set; }
         public FactureViewModel()
         {
+            // Instanciation de la liste et commande
             this.Invoices = new ObservableCollection<Invoice>();
-            this.ViewInvoiceCommand = new Command<Invoice>(ViewInvoice);
+            this.ViewInvoiceCommand = new Command<object>(ViewInvoice);
         }
 
+        /// <summary>
+        /// Methode priver pour populer la liste des factures a partir du Data Provider
+        /// </summary>
         private async void GetInvoices()
         {
             try
@@ -38,6 +44,9 @@ namespace StoreApp.ViewModels
             }
         }
 
+        /// <summary>
+        /// Methode public pour rafraichir la liste quand on navigue sur la page Facture
+        /// </summary>
         public void RefreshList()
         {
             try
@@ -51,14 +60,20 @@ namespace StoreApp.ViewModels
 
         }
 
-        private async void ViewInvoice(Invoice item)
+        /// <summary>
+        /// Methode qui recherche la facture selectionner par son Id et l'envoi dans la page InvoicePopup
+        /// </summary>
+        /// <param name="item"></param>
+        private async void ViewInvoice(object item)
         {
             try
             {
                 if (item == null)
                     return;
 
-                await Shell.Current.ShowPopupAsync(new InvoicePopup(item));
+                Invoice invoice = new Invoice();
+                invoice = await App.dataProvider.GetInvoiceByIdAsync((int)item);
+                await Shell.Current.ShowPopupAsync(new InvoicePopup(invoice));
             }
             catch (Exception ex)
             {

@@ -11,6 +11,7 @@ using Xamarin.Essentials;
 
 namespace StoreApp.Data
 {
+    //Jerome Asselin 2195077
     public class DataProviderService
     {
         private static string BaseAddress = 
@@ -49,7 +50,33 @@ namespace StoreApp.Data
 
             return Items;
         }
-        
+
+        public async Task<SmartDevice> GetDeviceByIdAsync(int id)
+        {
+            SmartDevice device = new SmartDevice();
+
+            try
+            {
+                Uri uri = new Uri($"{BaseAddress}/api/SmartDevices/{id}");
+
+                HttpResponseMessage response = await this.httpClient.GetAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    device = JsonConvert.DeserializeObject<SmartDevice>(content);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
+
+            return device;
+        }
+
         public async Task<List<Invoice>> GetAllInvoicesAsync()
         {
             List<Invoice> Items = new List<Invoice>();

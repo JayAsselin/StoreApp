@@ -10,6 +10,7 @@ using Xamarin.Forms;
 
 namespace StoreApp.Data
 {
+    //Jerome Asselin 2195077
     public class Panier:INotifyPropertyChanged
     {
         private ObservableCollection<SmartDevice> content;

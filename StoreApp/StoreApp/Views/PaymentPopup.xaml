@@ -5,9 +5,11 @@
              x:Class="StoreApp.Views.PaymentPopup"
              Size="300,300"
              IsLightDismissEnabled="False"
-             Color="#333333">
+             Color="Transparent">
 
-    <StackLayout>
+    <!--Jerome Asselin 2195077-->
+    
+    <StackLayout BackgroundColor="#333333" xct:CornerRadiusEffect.CornerRadius="10">
         <Image Source="paymentSuccess.png" Aspect="AspectFit" HeightRequest="150" WidthRequest="150" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
         <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
             <Label Text="Paiement effectuer avec succes!" FontSize="Body" TextColor="Beige" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>

@@ -8,7 +8,6 @@ namespace StoreApp
     public partial class App : Application
     {
         public static Panier panier;
-        //public static DbContext dbContext;
         public static DataProviderService dataProvider;
         public App()
         {
@@ -19,7 +18,6 @@ namespace StoreApp
             panier = new Panier();
             MainPage = new AppShell();
             dataProvider = new DataProviderService();
-            //dbContext = new DbContext("StoreApp.db3");
             
         }
 
